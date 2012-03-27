@@ -344,9 +344,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9398377F0DA42965007F53F3 /* ShortcutRecorder.framework */ = {
+		9398377F0DA42965007F53F3 /* ShortcutRecorder */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 939837840DA42965007F53F3 /* Build configuration list for PBXNativeTarget "ShortcutRecorder.framework" */;
+			buildConfigurationList = 939837840DA42965007F53F3 /* Build configuration list for PBXNativeTarget "ShortcutRecorder" */;
 			buildPhases = (
 				9398377D0DA42965007F53F3 /* Sources */,
 				9398377E0DA42965007F53F3 /* Frameworks */,
@@ -357,7 +357,7 @@
 			);
 			dependencies = (
 			);
-			name = ShortcutRecorder.framework;
+			name = ShortcutRecorder;
 			productName = ShortcutRecorder.framework;
 			productReference = 939837800DA42965007F53F3 /* ShortcutRecorder.framework */;
 			productType = "com.apple.product-type.framework";
@@ -413,7 +413,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9398377F0DA42965007F53F3 /* ShortcutRecorder.framework */,
+				9398377F0DA42965007F53F3 /* ShortcutRecorder */,
 				93983B060DA43C4E007F53F3 /* ShortcutRecorderFramework_Tester */,
 			);
 		};
@@ -463,7 +463,7 @@
 /* Begin PBXTargetDependency section */
 		342E01EF109CCCED009AD8CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9398377F0DA42965007F53F3 /* ShortcutRecorder.framework */;
+			target = 9398377F0DA42965007F53F3 /* ShortcutRecorder */;
 			targetProxy = 342E01EE109CCCED009AD8CA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -633,7 +633,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		939837840DA42965007F53F3 /* Build configuration list for PBXNativeTarget "ShortcutRecorder.framework" */ = {
+		939837840DA42965007F53F3 /* Build configuration list for PBXNativeTarget "ShortcutRecorder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				939837820DA42965007F53F3 /* Debug */,
