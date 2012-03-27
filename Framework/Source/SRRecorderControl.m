@@ -12,12 +12,18 @@
 //      Jamie Kirkpatrick
 
 #import "SRRecorderControl.h"
+
 #import "SRCommon.h"
+#import "SRRecorderCell.h"
 
-#define SRCell (SRRecorderCell *)[self cell]
+#define SRFixedHeight	22
+#define SRMinWidth		58
 
-@interface SRRecorderControl (Private)
+@interface SRRecorderControl () <SRRecorderCellDelegate>
+
+- (SRRecorderCell *)cell;
 - (void)resetTrackingRects;
+
 @end
 
 @implementation SRRecorderControl
@@ -25,7 +31,7 @@
 + (void)initialize
 {
     if (self == [SRRecorderControl class])
-	{
+{
         [self setCellClass: [SRRecorderCell class]];
     }
 }
@@ -39,7 +45,9 @@
 {
 	self = [super initWithFrame: frameRect];
 	
-	[SRCell setDelegate: self];
+	if (self) {
+		self.cell.delegate = self;
+	}
 	
 	return self;
 }
@@ -48,122 +56,93 @@
 {
 	self = [super initWithCoder: aDecoder];
 	
-	[SRCell setDelegate: self];
+	if (self) {
+		self.cell.delegate = self;
+	}
 	
 	return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-	[super encodeWithCoder: aCoder];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
-}
 
 #pragma mark *** Cell Behavior ***
 
-// We need keyboard access
+- (SRRecorderCell *)cell
+{
+	return [super cell];
+}
+
 - (BOOL)acceptsFirstResponder
 {
+	// We need keyboard access
     return YES;
 }
 
-// Allow the control to be activated with the first click on it even if it's window isn't the key window
 - (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
 {
+	// Allow the control to be activated with the first click on it even if it's window isn't the key window
 	return YES;
 }
 
-- (BOOL) becomeFirstResponder 
+- (BOOL)becomeFirstResponder 
 {
-    BOOL okToChange = [SRCell becomeFirstResponder];
+    BOOL okToChange = [self.cell becomeFirstResponder];
     if (okToChange) [super setKeyboardFocusRingNeedsDisplayInRect:[self bounds]];
     return okToChange;
 }
 
-- (BOOL) resignFirstResponder 
+- (BOOL)resignFirstResponder 
 {
-    BOOL okToChange = [SRCell resignFirstResponder];
+    BOOL okToChange = [self.cell resignFirstResponder];
     if (okToChange) [super setKeyboardFocusRingNeedsDisplayInRect:[self bounds]];
     return okToChange;
 }
 
-#pragma mark *** Aesthetics ***
-- (BOOL)animates {
-	return [SRCell animates];
-}
 
-- (void)setAnimates:(BOOL)an {
-	[SRCell setAnimates:an];
-}
-
-- (SRRecorderStyle)style {
-	return [SRCell style];
-}
-
-- (void)setStyle:(SRRecorderStyle)nStyle {
-	[SRCell setStyle:nStyle];
-}
-
-#pragma mark *** Interface Stuff ***
-
-
-// If the control is set to be resizeable in width, this will make sure that the tracking rects are always updated
-- (void)viewDidMoveToWindow
-{
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    
-    [center removeObserver: self];
-	[center addObserver:self selector:@selector(viewFrameDidChange:) name:NSViewFrameDidChangeNotification object:self];
-	
-	[self resetTrackingRects];
-}
-
-- (void)viewFrameDidChange:(NSNotification *)aNotification
-{
-	[self resetTrackingRects];
-}
+#pragma mark - Interface
 
 // Prevent from being too small
 - (void)setFrameSize:(NSSize)newSize
 {
 	NSSize correctedSize = newSize;
-	correctedSize.height = SRMaxHeight;
-	if (correctedSize.width < SRMinWidth) correctedSize.width = SRMinWidth;
+	correctedSize.height = SRFixedHeight;
+	
+	if (correctedSize.width < SRMinWidth)
+		correctedSize.width = SRMinWidth;
 	
 	[super setFrameSize: correctedSize];
+	[self resetTrackingRects];
 }
 
 - (void)setFrame:(NSRect)frameRect
 {
 	NSRect correctedFrarme = frameRect;
-	correctedFrarme.size.height = SRMaxHeight;
+	correctedFrarme.size.height = SRFixedHeight;
 	if (correctedFrarme.size.width < SRMinWidth) correctedFrarme.size.width = SRMinWidth;
 
 	[super setFrame: correctedFrarme];
 }
 
-- (NSString *)keyChars {
-	return [SRCell keyChars];
+- (NSString *)characters
+{
+	return [self.cell characters];
 }
 
-- (NSString *)keyCharsIgnoringModifiers {
-	return [SRCell keyCharsIgnoringModifiers];	
+- (NSString *)charactersIgnoringModifiers
+{
+	return [self.cell charactersIgnoringModifiers];	
 }
 
-#pragma mark *** Key Interception ***
+
+#pragma mark - Key Interception
 
 // Like most NSControls, pass things on to the cell
 - (BOOL)performKeyEquivalent:(NSEvent *)theEvent
 {
 	// Only if we're key, please. Otherwise hitting Space after having
 	// tabbed past SRRecorderControl will put you into recording mode.
-	if (([[[self window] firstResponder] isEqualTo:self])) { 
-		if ([SRCell performKeyEquivalent:theEvent]) return YES;
+	if (self.window.firstResponder == self) {
+		if ([self.cell performKeyEquivalent:theEvent])
+			return YES;
 	}
 
 	return [super performKeyEquivalent: theEvent];
@@ -171,80 +150,82 @@
 
 - (void)flagsChanged:(NSEvent *)theEvent
 {
-	[SRCell flagsChanged:theEvent];
+	[self.cell flagsChanged:theEvent];
 }
 
 - (void)keyDown:(NSEvent *)theEvent
 {
-	if ( [SRCell performKeyEquivalent: theEvent] )
+	if ([self.cell performKeyEquivalent: theEvent])
         return;
     
     [super keyDown:theEvent];
 }
 
+
 #pragma mark *** Key Combination Control ***
 
-- (NSUInteger)allowedFlags
+- (NSUInteger)allowedModifierFlags
 {
-	return [SRCell allowedFlags];
+	return [self.cell allowedModifierFlags];
 }
 
-- (void)setAllowedFlags:(NSUInteger)flags
+- (void)setAllowedModifierFlags:(NSUInteger)flags
 {
-	[SRCell setAllowedFlags: flags];
+	[self.cell setAllowedModifierFlags: flags];
 }
 
-- (BOOL)allowsKeyOnly {
-	return [SRCell allowsKeyOnly];
+- (BOOL)allowsBareKeys
+{
+	return [self.cell allowsBareKeys];
 }
 
-- (void)setAllowsKeyOnly:(BOOL)nAllowsKeyOnly {
-    [self setAllowsKeyOnly:nAllowsKeyOnly escapeKeysRecord:NO];
+- (void)setAllowsBareKeys:(BOOL)nAllowsBareKeys
+{
+    [self.cell setAllowsBareKeys: nAllowsBareKeys];
 }
 
-- (void)setAllowsKeyOnly:(BOOL)nAllowsKeyOnly escapeKeysRecord:(BOOL)nEscapeKeysRecord {
-	[SRCell setAllowsKeyOnly:nAllowsKeyOnly escapeKeysRecord:nEscapeKeysRecord];
+- (BOOL)recordsEscapeKey
+{
+	return [self.cell recordsEscapeKey];
 }
 
-- (BOOL)escapeKeysRecord {
-	return [SRCell escapeKeysRecord];
-}
-
-- (void)setEscapeKeysRecord:(BOOL)nEscapeKeysRecord {
-	[SRCell setEscapeKeysRecord:nEscapeKeysRecord];
+- (void)setRecordsEscapeKey:(BOOL)nRecordsEscapeKey
+{
+	[self.cell setRecordsEscapeKey: nRecordsEscapeKey];
 }
 
 - (BOOL)canCaptureGlobalHotKeys
 {
-	return [[self cell] canCaptureGlobalHotKeys];
+	return [self.cell canCaptureGlobalHotKeys];
 }
 
 - (void)setCanCaptureGlobalHotKeys:(BOOL)inState
 {
-	[[self cell] setCanCaptureGlobalHotKeys:inState];
+	[self.cell setCanCaptureGlobalHotKeys:inState];
 }
 
-- (NSUInteger)requiredFlags
+- (NSUInteger)requiredModifierFlags
 {
-	return [SRCell requiredFlags];
+	return [self.cell requiredModifierFlags];
 }
 
-- (void)setRequiredFlags:(NSUInteger)flags
+- (void)setRequiredModifierFlags:(NSUInteger)flags
 {
-	[SRCell setRequiredFlags: flags];
+	[self.cell setRequiredModifierFlags: flags];
 }
 
 - (KeyCombo)keyCombo
 {
-	return [SRCell keyCombo];
+	return [self.cell keyCombo];
 }
 
 - (void)setKeyCombo:(KeyCombo)aKeyCombo
 {
-	[SRCell setKeyCombo: aKeyCombo];
+	[self.cell setKeyCombo: aKeyCombo];
 }
 
-#pragma mark *** Binding Methods ***
+
+#pragma mark - Binding
 
 - (NSDictionary *)objectValue
 {
@@ -253,7 +234,7 @@
         return nil;
 
     return [NSDictionary dictionaryWithObjectsAndKeys:
-            [self keyCharsIgnoringModifiers], @"characters",
+            [self charactersIgnoringModifiers], @"characters",
             [NSNumber numberWithInteger:keyCombo.code], @"keyCode",
             [NSNumber numberWithUnsignedInteger:keyCombo.flags], @"modifierFlags",
             nil];
@@ -262,9 +243,11 @@
 - (void)setObjectValue:(NSDictionary *)shortcut
 {
     KeyCombo keyCombo = SRMakeKeyCombo(ShortcutRecorderEmptyCode, ShortcutRecorderEmptyFlags);
+	
     if (shortcut != nil && [shortcut isKindOfClass:[NSDictionary class]]) {
         NSNumber *keyCode = [shortcut objectForKey:@"keyCode"];
         NSNumber *modifierFlags = [shortcut objectForKey:@"modifierFlags"];
+		
         if ([keyCode isKindOfClass:[NSNumber class]] && [modifierFlags isKindOfClass:[NSNumber class]]) {
             keyCombo.code = [keyCode integerValue];
             keyCombo.flags = [modifierFlags unsignedIntegerValue];
@@ -282,51 +265,16 @@
 	return [super valueClassForBinding:binding];
 }
 
-#pragma mark *** Autosave Control ***
-
-- (NSString *)autosaveName
-{
-	return [SRCell autosaveName];
-}
-
-- (void)setAutosaveName:(NSString *)aName
-{
-	[SRCell setAutosaveName: aName];
-}
-
-#pragma mark -
-
 - (NSString *)keyComboString
 {
-	return [SRCell keyComboString];
+	return [self.cell keyComboString];
 }
 
-#pragma mark *** Conversion Methods ***
-
-- (NSUInteger)cocoaToCarbonFlags:(NSUInteger)cocoaFlags
-{
-	return SRCocoaToCarbonFlags( cocoaFlags );
-}
-
-- (NSUInteger)carbonToCocoaFlags:(NSUInteger)carbonFlags;
-{
-	return SRCarbonToCocoaFlags( carbonFlags );
-}
-
-#pragma mark *** Delegate ***
+#pragma mark - Delegate
 
 // Only the delegate will be handled by the control
-- (id)delegate
-{
-	return delegate;
-}
+@synthesize delegate;
 
-- (void)setDelegate:(id)aDelegate
-{
-	delegate = aDelegate;
-}
-
-#pragma mark *** Delegate pass-through ***
 
 - (BOOL)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason
 {
@@ -382,13 +330,9 @@
 	[boundObject setValue:value forKeyPath:boundKeyPath];
 }
 
-@end
-
-@implementation SRRecorderControl (Private)
-
 - (void)resetTrackingRects
 {
-	[SRCell resetTrackingRects];
+	[self.cell resetTrackingRects];
 }
 
 @end

@@ -15,13 +15,13 @@
 }
 
 + (id)clearKeyCombo;
-+ (id)keyComboWithKeyCode: (NSInteger)keyCode modifiers: (NSUInteger)modifiers;
-- (id)initWithKeyCode: (NSInteger)keyCode modifiers: (NSUInteger)modifiers;
++ (id)keyComboWithKeyCode:(NSInteger)keyCode modifiers:(NSUInteger)modifiers;
+- (id)initWithKeyCode:(NSInteger)keyCode modifiers:(NSUInteger)modifiers;
 
-- (id)initWithPlistRepresentation: (id)plist;
+- (id)initWithPlistRepresentation:(id)plist;
 - (id)plistRepresentation;
 
-- (BOOL)isEqual: (PTKeyCombo*)combo;
+- (BOOL)isEqual:(PTKeyCombo*)combo;
 
 - (NSInteger)keyCode;
 - (NSUInteger)modifiers;

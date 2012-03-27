@@ -45,10 +45,7 @@
 
 - (IBAction)allowedModifiersChanged:(id)sender;
 - (IBAction)requiredModifiersChanged:(id)sender;
-
 - (IBAction)toggleGlobalHotKey:(id)sender;
-
 - (IBAction)changeAllowsBareKeys:(id)sender;
-- (IBAction)changeStyle:(id)sender;
 
 @end

@@ -24,12 +24,12 @@
 
 + (PTHotKeyCenter *)sharedCenter;
 
-- (BOOL)registerHotKey: (PTHotKey*)hotKey;
-- (void)unregisterHotKey: (PTHotKey*)hotKey;
+- (BOOL)registerHotKey:(PTHotKey*)hotKey;
+- (void)unregisterHotKey:(PTHotKey*)hotKey;
 
 - (NSArray*)allHotKeys;
-- (PTHotKey*)hotKeyWithIdentifier: (id)ident;
+- (PTHotKey*)hotKeyWithIdentifier:(id)ident;
 
-- (void)sendEvent: (NSEvent*)event;
+- (void)sendEvent:(NSEvent*)event;
 
 @end

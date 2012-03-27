@@ -11,126 +11,45 @@
 #import "PTHotKeyCenter.h"
 #import "PTKeyCombo.h"
 
+#import <objc/message.h>
+
+
 @implementation PTHotKey
+
+@synthesize identifier, name, target, action, keyCombo, carbonHotKeyID, carbonEventHotKeyRef;
+
 
 - (id)init
 {
-	return [self initWithIdentifier: nil keyCombo: nil];
+	return [self initWithIdentifier:nil keyCombo:nil];
 }
 
-- (id)initWithIdentifier: (id)identifier keyCombo: (PTKeyCombo*)combo
+- (id)initWithIdentifier:(id)someIdentifier keyCombo:(PTKeyCombo *)combo
 {
 	self = [super init];
 
-	if( self )
-	{
-		[self setIdentifier: identifier];
-		[self setKeyCombo: combo];
+	if (self) {
+		self.identifier = someIdentifier;
+		self.keyCombo = combo;
 	}
 
 	return self;
 }
 
-- (void)dealloc
-{
-	[mIdentifier release];
-	[mName release];
-	[mKeyCombo release];
 
-	[super dealloc];
+- (NSString *)description
+{
+	return [NSString stringWithFormat: @"<%@: %@, %@>", NSStringFromClass([self class]), [self identifier], [self keyCombo]];
 }
 
-- (NSString*)description
+- (void)setKeyCombo:(PTKeyCombo *)combo
 {
-	return [NSString stringWithFormat: @"<%@: %@, %@>", NSStringFromClass( [self class] ), [self identifier], [self keyCombo]];
+	keyCombo = (combo) ?: [PTKeyCombo clearKeyCombo];
 }
-
-#pragma mark -
-
-- (void)setIdentifier: (id)ident
-{
-	[ident retain];
-	[mIdentifier release];
-	mIdentifier = ident;
-}
-
-- (id)identifier
-{
-	return mIdentifier;
-}
-
-- (void)setKeyCombo: (PTKeyCombo*)combo
-{
-	if( combo == nil )
-		combo = [PTKeyCombo clearKeyCombo];
-
-	[combo retain];
-	[mKeyCombo release];
-	mKeyCombo = combo;
-}
-
-- (PTKeyCombo*)keyCombo
-{
-	return mKeyCombo;
-}
-
-- (void)setName: (NSString*)name
-{
-	[name retain];
-	[mName release];
-	mName = name;
-}
-
-- (NSString*)name
-{
-	return mName;
-}
-
-- (void)setTarget: (id)target
-{
-	mTarget = target;
-}
-
-- (id)target
-{
-	return mTarget;
-}
-
-- (void)setAction: (SEL)action
-{
-	mAction = action;
-}
-
-- (SEL)action
-{
-	return mAction;
-}
-
-- (NSUInteger)carbonHotKeyID
-{
-	return mCarbonHotKeyID;
-}
-
-- (void)setCarbonHotKeyID: (NSUInteger)hotKeyID;
-{
-	mCarbonHotKeyID = hotKeyID;
-}
-
-- (EventHotKeyRef)carbonEventHotKeyRef
-{
-	return mCarbonEventHotKeyRef;
-}
-
-- (void)setCarbonEventHotKeyRef: (EventHotKeyRef)hotKeyRef
-{
-	mCarbonEventHotKeyRef = hotKeyRef;
-}
-
-#pragma mark -
 
 - (void)invoke
 {
-	[mTarget performSelector: mAction withObject: self];
+	(void)objc_msgSend(target, self.action, self);
 }
 
 @end

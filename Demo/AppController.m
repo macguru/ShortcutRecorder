@@ -32,7 +32,7 @@
 	if ([allowedModifiersControlCheckBox state]) newFlags += NSControlKeyMask;
 	if ([allowedModifiersShiftCheckBox state]) newFlags += NSShiftKeyMask;
 	
-	[shortcutRecorder setAllowedFlags: newFlags];
+	[shortcutRecorder setAllowedModifierFlags: newFlags];
 }
 
 - (IBAction)requiredModifiersChanged:(id)sender
@@ -44,7 +44,7 @@
 	if ([requiredModifiersControlCheckBox state]) newFlags += NSControlKeyMask;
 	if ([requiredModifiersShiftCheckBox state]) newFlags += NSShiftKeyMask;
 	
-	[shortcutRecorder setRequiredFlags: newFlags];
+	[shortcutRecorder setRequiredModifierFlags: newFlags];
 }
 
 - (IBAction)toggleGlobalHotKey:(id)sender
@@ -53,7 +53,6 @@
 	if (globalHotKey != nil)
 	{
 		[[PTHotKeyCenter sharedCenter] unregisterHotKey: globalHotKey];
-		[globalHotKey release];
 		globalHotKey = nil;
 	}
 
@@ -61,7 +60,7 @@
 
 	globalHotKey = [[PTHotKey alloc] initWithIdentifier:@"SRTest"
 											   keyCombo:[PTKeyCombo keyComboWithKeyCode:[shortcutRecorder keyCombo].code
-																			  modifiers:[shortcutRecorder cocoaToCarbonFlags: [shortcutRecorder keyCombo].flags]]];
+																			  modifiers:SRCocoaToCarbonFlags(shortcutRecorder.keyCombo.flags)]];
 	
 	[globalHotKey setTarget: self];
 	[globalHotKey setAction: @selector(hitHotKey:)];
@@ -70,27 +69,18 @@
 }
 
 - (IBAction)changeAllowsBareKeys:(id)sender {
-	BOOL allowsKeyOnly = NO; BOOL escapeKeysRecord = NO;
+	BOOL allowsBareKeys = NO; BOOL recordsEscapeKey = NO;
 	NSInteger allowsTag = [allowsBareKeysPopUp selectedTag];
 	if (allowsTag > 0)
-		allowsKeyOnly = YES;
+		allowsBareKeys = YES;
 	if (allowsTag > 1)
-		escapeKeysRecord = YES;
-	[shortcutRecorder setAllowsKeyOnly:allowsKeyOnly escapeKeysRecord:escapeKeysRecord];
-	[delegateDisallowRecorder setAllowsKeyOnly:allowsKeyOnly escapeKeysRecord:escapeKeysRecord];
-}
-
-- (IBAction)changeStyle:(id)sender {
-	NSInteger style = [stylePopUp selectedTag];
-	BOOL animates = NO;
-	if (style == 2) {
-		style = 1;
-		animates = YES;
-	}
-	[shortcutRecorder setAnimates:animates];
-	[shortcutRecorder setStyle:(SRRecorderStyle)style];
-	[delegateDisallowRecorder setAnimates:animates];
-	[delegateDisallowRecorder setStyle:(SRRecorderStyle)style];
+		recordsEscapeKey = YES;
+	
+	shortcutRecorder.allowsBareKeys = allowsBareKeys;
+	shortcutRecorder.recordsEscapeKey = recordsEscapeKey;
+	
+	delegateDisallowRecorder.allowsBareKeys = allowsBareKeys;
+	delegateDisallowRecorder.recordsEscapeKey = recordsEscapeKey;
 }
 
 #pragma mark -

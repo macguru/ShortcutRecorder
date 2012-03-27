@@ -11,24 +11,23 @@
 //      Jesper
 //      Jamie Kirkpatrick
 
-#import <Cocoa/Cocoa.h>
+@protocol SRValidatorDelegate;
 
-@interface SRValidator : NSObject {
-    id              delegate;
-}
 
-- (id) initWithDelegate:(id)theDelegate;
+@interface SRValidator : NSObject
 
-- (BOOL) isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags error:(NSError **)error;
-- (BOOL) isKeyCode:(NSInteger)keyCode andFlags:(NSUInteger)flags takenInMenu:(NSMenu *)menu error:(NSError **)error;
+- (id)initWithDelegate:(id <SRValidatorDelegate>)theDelegate;
 
-- (id) delegate;
-- (void) setDelegate: (id) theDelegate;
+- (BOOL)isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags error:(NSError **)error;
+- (BOOL)isKeyCode:(NSInteger)keyCode andFlags:(NSUInteger)flags takenInMenu:(NSMenu *)menu error:(NSError **)error;
+
+@property(nonatomic, weak) id <SRValidatorDelegate> delegate;
 
 @end
 
-#pragma mark -
 
-@interface NSObject( SRValidation )
-- (BOOL) shortcutValidator:(SRValidator *)validator isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
+@protocol SRValidatorDelegate <NSObject>
+
+- (BOOL)shortcutValidator:(SRValidator *)validator isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
+
 @end

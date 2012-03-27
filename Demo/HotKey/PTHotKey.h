@@ -14,9 +14,9 @@
 
 @interface PTHotKey : NSObject
 {
-	NSString*		mIdentifier;
-	NSString*		mName;
-	PTKeyCombo*		mKeyCombo;
+	NSString		*mIdentifier;
+	NSString		*mName;
+	PTKeyCombo		*mKeyCombo;
 	id				mTarget;
 	SEL				mAction;
 
@@ -24,29 +24,19 @@
 	EventHotKeyRef	mCarbonEventHotKeyRef;
 }
 
-- (id)initWithIdentifier: (id)identifier keyCombo: (PTKeyCombo*)combo;
+- (id)initWithIdentifier:(id)identifier keyCombo:(PTKeyCombo *)combo;
 - (id)init;
 
-- (void)setIdentifier: (id)ident;
-- (id)identifier;
+@property(nonatomic, copy) NSString *identifier;
+@property(nonatomic, copy) NSString *name;
 
-- (void)setName: (NSString*)name;
-- (NSString*)name;
+@property(nonatomic, strong) PTKeyCombo *keyCombo;
 
-- (void)setKeyCombo: (PTKeyCombo*)combo;
-- (PTKeyCombo*)keyCombo;
-
-- (void)setTarget: (id)target;
-- (id)target;
-- (void)setAction: (SEL)action;
-- (SEL)action;
-
-- (NSUInteger)carbonHotKeyID;
-- (void)setCarbonHotKeyID: (NSUInteger)hotKeyID;
-
-- (EventHotKeyRef)carbonEventHotKeyRef;
-- (void)setCarbonEventHotKeyRef:(EventHotKeyRef)hotKeyRef;
-
+@property(nonatomic, weak) id target;
+@property(nonatomic, assign) SEL action;
 - (void)invoke;
+
+@property(nonatomic, assign) NSUInteger carbonHotKeyID;
+@property(nonatomic, assign) EventHotKeyRef carbonEventHotKeyRef;
 
 @end

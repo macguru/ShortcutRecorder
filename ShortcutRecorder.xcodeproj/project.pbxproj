@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50FF9A511521F33C001565E4 /* SRRemoveShortcut.tif in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A481521C1E5001565E4 /* SRRemoveShortcut.tif */; };
+		50FF9A521521F33C001565E4 /* SRRemoveShortcutPressed.tif in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A491521C1E5001565E4 /* SRRemoveShortcutPressed.tif */; };
+		50FF9A531521F33C001565E4 /* SRRemoveShortcutRollover.tif in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A4A1521C1E5001565E4 /* SRRemoveShortcutRollover.tif */; };
+		50FF9A541521F33C001565E4 /* SRSnapback.tiff in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A4B1521C1E5001565E4 /* SRSnapback.tiff */; };
 		9371C79D15167DE2008B7F36 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9371C79715167DE2008B7F36 /* InfoPlist.strings */; };
 		9371C79E15167DE2008B7F36 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9371C79915167DE2008B7F36 /* Localizable.strings */; };
 		9371C79F15167DE2008B7F36 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9371C79B15167DE2008B7F36 /* MainMenu.xib */; };
@@ -23,10 +27,6 @@
 		9398393E0DA4350B007F53F3 /* SRKeyCodeTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C3670C0A246B4900B69171 /* SRKeyCodeTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9398393F0DA4350B007F53F3 /* SRValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C3670E0A246B4900B69171 /* SRValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		939839400DA4350B007F53F3 /* SRCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C367100A246B4900B69171 /* SRCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		93983B0A0DA43C4E007F53F3 /* SRRemoveShortcut.tif in Resources */ = {isa = PBXBuildFile; fileRef = 0B5E281809C1D6C500444687 /* SRRemoveShortcut.tif */; };
-		93983B0B0DA43C4E007F53F3 /* SRRemoveShortcutPressed.tif in Resources */ = {isa = PBXBuildFile; fileRef = 0B5E281A09C1D6C500444687 /* SRRemoveShortcutPressed.tif */; };
-		93983B0C0DA43C4E007F53F3 /* SRRemoveShortcutRollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = 0B5E281C09C1D6C500444687 /* SRRemoveShortcutRollover.tif */; };
-		93983B0D0DA43C4E007F53F3 /* SRSnapback.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 0B6DAA3C09C329AB0022655F /* SRSnapback.tiff */; };
 		93983B100DA43C4E007F53F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		93983B140DA43C4E007F53F3 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E2A0109CDBADE0085E9ED /* AppController.m */; };
 		93983B150DA43C4E007F53F3 /* PTHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E2A0409CDBADE0085E9ED /* PTHotKey.m */; };
@@ -52,6 +52,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		50FF9A501521F320001565E4 /* Copy Resources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				50FF9A511521F33C001565E4 /* SRRemoveShortcut.tif in Copy Resources */,
+				50FF9A521521F33C001565E4 /* SRRemoveShortcutPressed.tif in Copy Resources */,
+				50FF9A531521F33C001565E4 /* SRRemoveShortcutRollover.tif in Copy Resources */,
+				50FF9A541521F33C001565E4 /* SRSnapback.tiff in Copy Resources */,
+			);
+			name = "Copy Resources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93983B570DA43C9A007F53F3 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -68,10 +82,6 @@
 /* Begin PBXFileReference section */
 		0B57CB1109C482D20000E739 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		0B57CB1309C482DC0000E739 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
-		0B5E281809C1D6C500444687 /* SRRemoveShortcut.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = SRRemoveShortcut.tif; path = ../Framework/Images/SRRemoveShortcut.tif; sourceTree = "<group>"; };
-		0B5E281A09C1D6C500444687 /* SRRemoveShortcutPressed.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = SRRemoveShortcutPressed.tif; path = ../Framework/Images/SRRemoveShortcutPressed.tif; sourceTree = "<group>"; };
-		0B5E281C09C1D6C500444687 /* SRRemoveShortcutRollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = SRRemoveShortcutRollover.tif; path = ../Framework/Images/SRRemoveShortcutRollover.tif; sourceTree = "<group>"; };
-		0B6DAA3C09C329AB0022655F /* SRSnapback.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = SRSnapback.tiff; path = ../Framework/Images/SRSnapback.tiff; sourceTree = "<group>"; };
 		0B8E29C009CDB9360085E9ED /* SRRecorderControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRRecorderControl.h; path = Framework/Source/SRRecorderControl.h; sourceTree = SOURCE_ROOT; };
 		0B8E29C109CDB9360085E9ED /* SRRecorderControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRRecorderControl.m; path = Framework/Source/SRRecorderControl.m; sourceTree = SOURCE_ROOT; };
 		0B8E29C209CDB9360085E9ED /* SRRecorderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRRecorderCell.h; path = Framework/Source/SRRecorderCell.h; sourceTree = SOURCE_ROOT; };
@@ -90,6 +100,10 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* ShortcutRecorder_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutRecorder_Prefix.pch; sourceTree = "<group>"; };
+		50FF9A481521C1E5001565E4 /* SRRemoveShortcut.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcut.tif; sourceTree = "<group>"; };
+		50FF9A491521C1E5001565E4 /* SRRemoveShortcutPressed.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcutPressed.tif; sourceTree = "<group>"; };
+		50FF9A4A1521C1E5001565E4 /* SRRemoveShortcutRollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcutRollover.tif; sourceTree = "<group>"; };
+		50FF9A4B1521C1E5001565E4 /* SRSnapback.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRSnapback.tiff; sourceTree = "<group>"; };
 		74C3670C0A246B4900B69171 /* SRKeyCodeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SRKeyCodeTransformer.h; path = Framework/Source/SRKeyCodeTransformer.h; sourceTree = SOURCE_ROOT; };
 		74C3670D0A246B4900B69171 /* SRKeyCodeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SRKeyCodeTransformer.m; path = Framework/Source/SRKeyCodeTransformer.m; sourceTree = SOURCE_ROOT; };
 		74C3670E0A246B4900B69171 /* SRValidator.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SRValidator.h; path = Framework/Source/SRValidator.h; sourceTree = SOURCE_ROOT; };
@@ -103,15 +117,15 @@
 		9371C79415167D58008B7F36 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = /Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/sv.lproj/ShortcutRecorder.strings; sourceTree = "<absolute>"; };
 		9371C79515167D67008B7F36 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "/Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/pt-BR.lproj/ShortcutRecorder.strings"; sourceTree = "<absolute>"; };
 		9371C79615167D6E008B7F36 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = /Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/sk.lproj/ShortcutRecorder.strings; sourceTree = "<absolute>"; };
-		9371C79815167DE2008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9371C79815167DE2008B7F36 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9371C79A15167DE2008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9371C79C15167DE2008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		9371C7A015167DFD008B7F36 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9371C7A115167E03008B7F36 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9371C7A215167E06008B7F36 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9371C7A315167E07008B7F36 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9371C7A415167E08008B7F36 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		9371C7A515167E09008B7F36 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9371C7A015167DFD008B7F36 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9371C7A115167E03008B7F36 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9371C7A215167E06008B7F36 /* pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9371C7A315167E07008B7F36 /* sv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9371C7A415167E08008B7F36 /* pt-BR */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		9371C7A515167E09008B7F36 /* sk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9371C7A615167E0B008B7F36 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9371C7A715167E0C008B7F36 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9371C7A815167E0D008B7F36 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -163,17 +177,6 @@
 				0B8E29FF09CDBADE0085E9ED /* Demo */,
 			);
 			name = Classes;
-			sourceTree = "<group>";
-		};
-		0B5E281709C1D6C500444687 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				0B5E281809C1D6C500444687 /* SRRemoveShortcut.tif */,
-				0B5E281A09C1D6C500444687 /* SRRemoveShortcutPressed.tif */,
-				0B5E281C09C1D6C500444687 /* SRRemoveShortcutRollover.tif */,
-				0B6DAA3C09C329AB0022655F /* SRSnapback.tiff */,
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		0B8E29BB09CDB9360085E9ED /* Framework */ = {
@@ -285,7 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				932B762015167A660092909C /* Framework */,
-				0B5E281709C1D6C500444687 /* Images */,
+				50FF9A471521C1E4001565E4 /* Images */,
 				0B8E2A1409CDBAFE0085E9ED /* Demo */,
 			);
 			name = Resources;
@@ -298,6 +301,18 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50FF9A471521C1E4001565E4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				50FF9A481521C1E5001565E4 /* SRRemoveShortcut.tif */,
+				50FF9A491521C1E5001565E4 /* SRRemoveShortcutPressed.tif */,
+				50FF9A4A1521C1E5001565E4 /* SRRemoveShortcutRollover.tif */,
+				50FF9A4B1521C1E5001565E4 /* SRSnapback.tiff */,
+			);
+			name = Images;
+			path = Framework/Images;
 			sourceTree = "<group>";
 		};
 		932B762015167A660092909C /* Framework */ = {
@@ -336,6 +351,7 @@
 				9398377D0DA42965007F53F3 /* Sources */,
 				9398377E0DA42965007F53F3 /* Frameworks */,
 				9398394A0DA4351C007F53F3 /* Headers */,
+				50FF9A501521F320001565E4 /* Copy Resources */,
 			);
 			buildRules = (
 			);
@@ -408,10 +424,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93983B0A0DA43C4E007F53F3 /* SRRemoveShortcut.tif in Resources */,
-				93983B0B0DA43C4E007F53F3 /* SRRemoveShortcutPressed.tif in Resources */,
-				93983B0C0DA43C4E007F53F3 /* SRRemoveShortcutRollover.tif in Resources */,
-				93983B0D0DA43C4E007F53F3 /* SRSnapback.tiff in Resources */,
 				9371C79D15167DE2008B7F36 /* InfoPlist.strings in Resources */,
 				9371C79E15167DE2008B7F36 /* Localizable.strings in Resources */,
 				9371C79F15167DE2008B7F36 /* MainMenu.xib in Resources */,
@@ -519,24 +531,19 @@
 		939837820DA42965007F53F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = "Framework/SR_LeopardFramework-Info.plist";
 				INSTALL_PATH = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
 				PRODUCT_NAME = ShortcutRecorder;
 				ZERO_LINK = YES;
 			};
@@ -545,23 +552,18 @@
 		939837830DA42965007F53F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = "Framework/SR_LeopardFramework-Info.plist";
 				INSTALL_PATH = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
 				PRODUCT_NAME = ShortcutRecorder;
 				ZERO_LINK = NO;
 			};
@@ -570,9 +572,11 @@
 		93983B200DA43C4E007F53F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBC_PLUGINS = $BUILT_PRODUCTS_DIR/ShortcutRecorder.Framework/Versions/A/Resources/ShortcutRecorder.ibplugin;
@@ -587,7 +591,9 @@
 		93983B210DA43C4E007F53F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_ENABLE_OBJC_GC = supported;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				IBC_PLUGINS = $BUILT_PRODUCTS_DIR/ShortcutRecorder.Framework/Versions/A/Resources/ShortcutRecorder.ibplugin;
@@ -607,10 +613,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
-				WARNING_CFLAGS = "-Wall";
-				WARNING_LDFLAGS = "";
 			};
 			name = Debug;
 		};
@@ -623,10 +626,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
-				WARNING_CFLAGS = "-Wall";
-				WARNING_LDFLAGS = "";
 			};
 			name = Release;
 		};

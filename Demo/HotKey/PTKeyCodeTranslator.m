@@ -19,7 +19,6 @@
     if (current == nil) {
         current = [[PTKeyCodeTranslator alloc] initWithKeyboardLayout:currentLayout];
     } else if ([current keyboardLayout] != currentLayout) {
-        [current release];
         current = [[PTKeyCodeTranslator alloc] initWithKeyboardLayout:currentLayout];
     }
 
@@ -35,8 +34,8 @@
 
 		CFRetain(keyboardLayout);
 
-        CFDataRef uchr = TISGetInputSourceProperty( keyboardLayout , kTISPropertyUnicodeKeyLayoutData );
-        uchrData = ( const UCKeyboardLayout* )CFDataGetBytePtr(uchr);
+        CFDataRef uchr = TISGetInputSourceProperty(keyboardLayout , kTISPropertyUnicodeKeyLayoutData);
+        uchrData = (const UCKeyboardLayout*)CFDataGetBytePtr(uchr);
     }
 
     return self;
@@ -46,13 +45,12 @@
 {
 	CFRelease(keyboardLayout);
 
-	[super dealloc];
 }
 
 - (NSString *)translateKeyCode:(short)keyCode {
     UniCharCount maxStringLength = 4, actualStringLength;
     UniChar unicodeString[4];
-    UCKeyTranslate( uchrData, keyCode, kUCKeyActionDisplay, 0, LMGetKbdType(), kUCKeyTranslateNoDeadKeysBit, &deadKeyState, maxStringLength, &actualStringLength, unicodeString );
+    UCKeyTranslate(uchrData, keyCode, kUCKeyActionDisplay, 0, LMGetKbdType(), kUCKeyTranslateNoDeadKeysBit, &deadKeyState, maxStringLength, &actualStringLength, unicodeString);
     return [NSString stringWithCharacters:unicodeString length:1];
 }
 
@@ -65,7 +63,7 @@
     kind = @"uchr";
 
     NSString *layoutName;
-    layoutName = TISGetInputSourceProperty( keyboardLayout, kTISPropertyLocalizedName );
+    layoutName = (__bridge NSString *)TISGetInputSourceProperty(keyboardLayout, kTISPropertyLocalizedName);
     return [NSString stringWithFormat:@"PTKeyCodeTranslator layout=%@ (%@)", layoutName, kind];
 }
 
