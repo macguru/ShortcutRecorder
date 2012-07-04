@@ -227,7 +227,7 @@
 		
 		if (_isRecording)
 		{
-	// Only the KeyCombo should be black and in a bigger font size
+	// Only the SRKeyCombo should be black and in a bigger font size
 			BOOL recordingOrEmpty = (isVaguelyRecording || [self _isEmpty]);
 			NSDictionary *attributes = @{NSParagraphStyleAttributeName: mpstyle,
 				NSFontAttributeName: [NSFont systemFontOfSize:(recordingOrEmpty ? [NSFont labelFontSize] : [NSFont smallSystemFontSize])],
@@ -266,7 +266,7 @@
 		
 		else
 		{
-			// Only the KeyCombo should be black and in a bigger font size
+			// Only the SRKeyCombo should be black and in a bigger font size
 			NSDictionary *attributes = @{NSParagraphStyleAttributeName: mpstyle,
 				NSFontAttributeName: [NSFont systemFontOfSize:([self _isEmpty] ? [NSFont labelFontSize] : [NSFont smallSystemFontSize])],
 				NSForegroundColorAttributeName: [([self _isEmpty] ? [NSColor disabledControlTextColor] : [NSColor blackColor]) colorWithAlphaComponent:alphaCombo]};
@@ -625,7 +625,7 @@
 	[self.controlView setNeedsDisplay: YES];
 }
 
-- (void)setKeyCombo:(KeyCombo)aKeyCombo
+- (void)setKeyCombo:(SRKeyCombo)aKeyCombo
 {
 	keyCombo = aKeyCombo;
 	keyCombo.flags = [self _filteredCocoaFlags: aKeyCombo.flags];
@@ -671,7 +671,7 @@
 	requiredModifierFlags = ShortcutRecorderEmptyFlags;
 	_recordingFlags = ShortcutRecorderEmptyFlags;
 	
-	// Create clean KeyCombo
+	// Create clean SRKeyCombo
 	keyCombo.flags = ShortcutRecorderEmptyFlags;
 	keyCombo.code = ShortcutRecorderEmptyCode;
 		

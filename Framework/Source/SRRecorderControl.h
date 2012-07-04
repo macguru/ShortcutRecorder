@@ -17,7 +17,7 @@
 
 @interface SRRecorderControl : NSControl
 
-@property(nonatomic) KeyCombo keyCombo;
+@property(nonatomic) SRKeyCombo keyCombo;
 @property(nonatomic, copy) NSDictionary *objectValue;
 
 - (NSString *)characters;
@@ -40,6 +40,6 @@
 @protocol SRRecorderDelegate <NSObject>
 
 - (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
-- (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(KeyCombo)newKeyCombo;
+- (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(SRKeyCombo)newKeyCombo;
 
 @end

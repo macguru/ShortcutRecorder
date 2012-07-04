@@ -213,12 +213,12 @@
 	[self.cell setRequiredModifierFlags: flags];
 }
 
-- (KeyCombo)keyCombo
+- (SRKeyCombo)keyCombo
 {
 	return [self.cell keyCombo];
 }
 
-- (void)setKeyCombo:(KeyCombo)aKeyCombo
+- (void)setKeyCombo:(SRKeyCombo)aKeyCombo
 {
 	[self.cell setKeyCombo: aKeyCombo];
 }
@@ -228,7 +228,7 @@
 
 - (NSDictionary *)objectValue
 {
-    KeyCombo keyCombo = [self keyCombo];
+    SRKeyCombo keyCombo = [self keyCombo];
     if (keyCombo.code == ShortcutRecorderEmptyCode || keyCombo.flags == ShortcutRecorderEmptyFlags)
         return nil;
 
@@ -239,7 +239,7 @@
 
 - (void)setObjectValue:(NSDictionary *)shortcut
 {
-    KeyCombo keyCombo = SRMakeKeyCombo(ShortcutRecorderEmptyCode, ShortcutRecorderEmptyFlags);
+    SRKeyCombo keyCombo = SRMakeKeyCombo(ShortcutRecorderEmptyCode, ShortcutRecorderEmptyFlags);
 	
     if (shortcut != nil && [shortcut isKindOfClass:[NSDictionary class]]) {
         NSNumber *keyCode = shortcut[@"keyCode"];
@@ -283,7 +283,7 @@
 
 #define NilOrNull(o) ((o) == nil || (id)(o) == [NSNull null])
 
-- (void)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell keyComboDidChange:(KeyCombo)newKeyCombo
+- (void)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell keyComboDidChange:(SRKeyCombo)newKeyCombo
 {
 	if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorder:keyComboDidChange:)])
 		[delegate shortcutRecorder:self keyComboDidChange:newKeyCombo];

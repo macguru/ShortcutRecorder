@@ -141,7 +141,7 @@ NSUInteger SRCocoaToCarbonFlags(NSUInteger cocoaFlags)
 //---------------------------------------------------------- 
 // SRDictionaryFromKeyCombo()
 //----------------------------------------------------------
-NSDictionary *SRDictionaryFromKeyCombo(KeyCombo keyCombo)
+NSDictionary *SRDictionaryFromKeyCombo(SRKeyCombo keyCombo)
 {
 	return @{ @"flags": @(keyCombo.flags), @"code": @(keyCombo.code) };
 }
@@ -149,7 +149,7 @@ NSDictionary *SRDictionaryFromKeyCombo(KeyCombo keyCombo)
 //----------------------------------------------------------
 // SRKeyComboFromDictionary()
 //----------------------------------------------------------
-KeyCombo SRKeyComboFromDictionary(NSDictionary *dict)
+SRKeyCombo SRKeyComboFromDictionary(NSDictionary *dict)
 {
 	return SRMakeKeyCombo([dict[@"code"] integerValue], [dict[@"flags"] unsignedIntegerValue]);
 }

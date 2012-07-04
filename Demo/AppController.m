@@ -91,7 +91,7 @@
 	{
 		BOOL isTaken = NO;
 		
-		KeyCombo kc = [delegateDisallowRecorder keyCombo];
+		SRKeyCombo kc = [delegateDisallowRecorder keyCombo];
 		
 		if (kc.code == keyCode && kc.flags == flags) isTaken = YES;
 		
@@ -103,7 +103,7 @@
 	return NO;
 }
 
-- (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(KeyCombo)newKeyCombo
+- (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(SRKeyCombo)newKeyCombo
 {
 	if (aRecorder == shortcutRecorder)
 	{

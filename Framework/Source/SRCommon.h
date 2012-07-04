@@ -20,7 +20,7 @@
 typedef struct {
 	NSUInteger flags; // 0 for no flags
 	NSInteger code; // -1 for no code
-} KeyCombo;
+} SRKeyCombo;
 
 
 #pragma mark - Enums
@@ -135,14 +135,14 @@ NSUInteger SRCocoaToCarbonFlags(NSUInteger cocoaFlags);
 
 #pragma mark - Serializing key combos
 
-NSDictionary *SRDictionaryFromKeyCombo(KeyCombo keyCombo);
-KeyCombo SRKeyComboFromDictionary(NSDictionary *dict);
+NSDictionary *SRDictionaryFromKeyCombo(SRKeyCombo keyCombo);
+SRKeyCombo SRKeyComboFromDictionary(NSDictionary *dict);
 
 
 #pragma mark - Inlines
 
-FOUNDATION_STATIC_INLINE KeyCombo SRMakeKeyCombo(NSInteger code, NSUInteger flags) {
-	return (KeyCombo){flags, code};
+FOUNDATION_STATIC_INLINE SRKeyCombo SRMakeKeyCombo(NSInteger code, NSUInteger flags) {
+	return (SRKeyCombo){flags, code};
 }
 
 FOUNDATION_STATIC_INLINE BOOL SRIsSpecialKey(NSInteger keyCode) {

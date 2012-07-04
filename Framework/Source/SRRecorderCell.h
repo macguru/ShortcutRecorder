@@ -18,7 +18,7 @@
 
 @interface SRRecorderCell : NSActionCell <NSCoding>
 
-@property(nonatomic) KeyCombo keyCombo;
+@property(nonatomic) SRKeyCombo keyCombo;
 
 @property(nonatomic) NSUInteger allowedModifierFlags;
 @property(nonatomic) NSUInteger requiredModifierFlags;
@@ -50,6 +50,6 @@
 
 @optional
 - (BOOL)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
-- (void)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell keyComboDidChange:(KeyCombo)newCombo;
+- (void)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell keyComboDidChange:(SRKeyCombo)newCombo;
 
 @end
