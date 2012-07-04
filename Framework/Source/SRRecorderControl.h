@@ -18,7 +18,7 @@
 @interface SRRecorderControl : NSControl
 
 @property(nonatomic) SRKeyCombo keyCombo;
-@property(nonatomic, copy) NSDictionary *objectValue;
+@property(nonatomic, copy) NSDictionary *objectValue; // Exposes binding @"value" for a dictionary rep of the keycombo
 
 - (NSString *)characters;
 - (NSString *)charactersIgnoringModifiers;

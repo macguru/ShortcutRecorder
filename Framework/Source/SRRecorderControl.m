@@ -99,6 +99,11 @@
 
 #pragma mark - Interface
 
+- (NSSize)intrinsicContentSize
+{
+	return NSMakeSize(SRMinWidth, SRFixedHeight);
+}
+
 // Prevent from being too small
 - (void)setFrameSize:(NSSize)newSize
 {
@@ -228,30 +233,12 @@
 
 - (NSDictionary *)objectValue
 {
-    SRKeyCombo keyCombo = [self keyCombo];
-    if (keyCombo.code == ShortcutRecorderEmptyCode || keyCombo.flags == ShortcutRecorderEmptyFlags)
-        return nil;
-
-    return @{@"characters": [self charactersIgnoringModifiers],
-            @"keyCode": @(keyCombo.code),
-            @"modifierFlags": @(keyCombo.flags)};
+    return SRDictionaryFromKeyCombo(self.keyCombo);
 }
 
 - (void)setObjectValue:(NSDictionary *)shortcut
 {
-    SRKeyCombo keyCombo = SRMakeKeyCombo(ShortcutRecorderEmptyCode, ShortcutRecorderEmptyFlags);
-	
-    if (shortcut != nil && [shortcut isKindOfClass:[NSDictionary class]]) {
-        NSNumber *keyCode = shortcut[@"keyCode"];
-        NSNumber *modifierFlags = shortcut[@"modifierFlags"];
-		
-        if ([keyCode isKindOfClass:[NSNumber class]] && [modifierFlags isKindOfClass:[NSNumber class]]) {
-            keyCombo.code = [keyCode integerValue];
-            keyCombo.flags = [modifierFlags unsignedIntegerValue];
-        }
-    }
-
-	[self setKeyCombo: keyCombo];
+	self.keyCombo = SRKeyComboFromDictionary(shortcut);
 }
 
 - (Class)valueClassForBinding:(NSString *)binding
