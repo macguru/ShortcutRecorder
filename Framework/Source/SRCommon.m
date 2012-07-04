@@ -24,7 +24,7 @@
 //---------------------------------------------------------- 
 NSString *SRStringForKeyCode(NSInteger keyCode)
 {
-	if (keyCode == SRKeyComboNoCode)
+	if (keyCode == ShortcutRecorderEmptyCode)
 		return nil;
 	
     return [[NSValueTransformer valueTransformerForName: NSStringFromClass(SRKeyCodeTransformer.class)] transformedValue:[NSNumber numberWithShort:keyCode]];
@@ -48,7 +48,7 @@ NSString *SRStringForCarbonModifierFlags(NSUInteger flags)
 //---------------------------------------------------------- 
 NSString *SRStringForCarbonModifierFlagsAndKeyCode(NSUInteger flags, NSInteger keyCode)
 {
-	if (keyCode == SRKeyComboNoCode)
+	if (keyCode == ShortcutRecorderEmptyCode)
 		return nil;
 	
     return [NSString stringWithFormat: @"%@%@", 
@@ -75,7 +75,7 @@ NSString *SRStringForCocoaModifierFlags(NSUInteger flags)
 //---------------------------------------------------------- 
 NSString *SRStringForCocoaModifierFlagsAndKeyCode(NSUInteger flags, NSInteger keyCode)
 {
-	if (keyCode == SRKeyComboNoCode)
+	if (keyCode == ShortcutRecorderEmptyCode)
 		return nil;
 	
     return [NSString stringWithFormat: @"%@%@",
@@ -88,7 +88,7 @@ NSString *SRStringForCocoaModifierFlagsAndKeyCode(NSUInteger flags, NSInteger ke
 //---------------------------------------------------------- 
 NSString *SRReadableStringForCarbonModifierFlagsAndKeyCode(NSUInteger flags, NSInteger keyCode)
 {
-	if (keyCode == SRKeyComboNoCode)
+	if (keyCode == ShortcutRecorderEmptyCode)
 		return nil;
 	
     NSString *readableString = [NSString stringWithFormat:@"%@%@%@%@%@", 
@@ -105,7 +105,7 @@ NSString *SRReadableStringForCarbonModifierFlagsAndKeyCode(NSUInteger flags, NSI
 //---------------------------------------------------------- 
 NSString *SRReadableStringForCocoaModifierFlagsAndKeyCode(NSUInteger flags, NSInteger keyCode)
 {
-	if (keyCode == SRKeyComboNoCode)
+	if (keyCode == ShortcutRecorderEmptyCode)
 		return nil;
 	
     NSString *readableString = [NSString stringWithFormat:@"%@%@%@%@%@", 

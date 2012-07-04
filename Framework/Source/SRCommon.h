@@ -22,11 +22,6 @@ typedef struct {
 	NSInteger code;		// SRKeyComboNoCode for no code
 } SRKeyCombo;
 
-#define SRKeyComboNoFlags	0
-#define SRKeyComboNoCode	-1
-
-#define SREmptyKeyCombo ((SRKeyCombo){SRKeyComboNoFlags, SRKeyComboNoCode})
-
 
 #pragma mark - Enums
 
@@ -105,6 +100,8 @@ enum {
 #define SRChar(x) [NSString stringWithCharacters:(const unichar[]){x} length:1]
 
 // Some default values
+#define SREmptyKeyCombo ((SRKeyCombo){ShortcutRecorderEmptyFlags, ShortcutRecorderEmptyCode})
+
 #define ShortcutRecorderEmptyFlags 0
 #define ShortcutRecorderAllFlags (ShortcutRecorderEmptyFlags | (NSCommandKeyMask | NSAlternateKeyMask | NSControlKeyMask | NSShiftKeyMask | NSFunctionKeyMask))
 #define ShortcutRecorderEmptyCode -1
@@ -151,7 +148,7 @@ FOUNDATION_STATIC_INLINE SRKeyCombo SRMakeKeyCombo(NSInteger code, NSUInteger fl
 }
 
 FOUNDATION_STATIC_INLINE BOOL SREqualKeyCombos(SRKeyCombo combo1, SRKeyCombo combo2) {
-	return (combo1.code == SRKeyComboNoCode && combo2.code == SRKeyComboNoCode) || (combo1.code == combo2.code && combo1.flags == combo2.flags);
+	return (combo1.code == ShortcutRecorderEmptyCode && combo2.code == ShortcutRecorderEmptyCode) || (combo1.code == combo2.code && combo1.flags == combo2.flags);
 }
 
 FOUNDATION_STATIC_INLINE BOOL SRIsSpecialKey(NSInteger keyCode) {
