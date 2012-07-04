@@ -133,6 +133,12 @@ NSUInteger SRCarbonToCocoaFlags(NSUInteger carbonFlags);
 NSUInteger SRCocoaToCarbonFlags(NSUInteger cocoaFlags);
 
 
+#pragma mark - Serializing key combos
+
+NSDictionary *SRDictionaryFromKeyCombo(KeyCombo keyCombo);
+KeyCombo SRKeyComboFromDictionary(NSDictionary *dict);
+
+
 #pragma mark - Inlines
 
 FOUNDATION_STATIC_INLINE KeyCombo SRMakeKeyCombo(NSInteger code, NSUInteger flags) {

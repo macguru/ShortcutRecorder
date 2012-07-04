@@ -137,7 +137,25 @@ NSUInteger SRCocoaToCarbonFlags(NSUInteger cocoaFlags)
 	return carbonFlags;
 }
 
+
 //---------------------------------------------------------- 
+// SRDictionaryFromKeyCombo()
+//----------------------------------------------------------
+NSDictionary *SRDictionaryFromKeyCombo(KeyCombo keyCombo)
+{
+	return @{ @"flags": @(keyCombo.flags), @"code": @(keyCombo.code) };
+}
+
+//----------------------------------------------------------
+// SRKeyComboFromDictionary()
+//----------------------------------------------------------
+KeyCombo SRKeyComboFromDictionary(NSDictionary *dict)
+{
+	return SRMakeKeyCombo([dict[@"code"] integerValue], [dict[@"flags"] unsignedIntegerValue]);
+}
+
+
+//----------------------------------------------------------
 // SRCharacterForKeyCodeAndCarbonFlags()
 //----------------------------------------------------------
 NSString *SRCharacterForKeyCodeAndCarbonFlags(NSInteger keyCode, NSUInteger carbonFlags)
