@@ -24,10 +24,10 @@
 //---------------------------------------------------------- 
 NSString *SRStringForKeyCode(NSInteger keyCode)
 {
-    static SRKeyCodeTransformer *keyCodeTransformer = nil;
-    if (!keyCodeTransformer)
-        keyCodeTransformer = [[SRKeyCodeTransformer alloc] init];
-    return [keyCodeTransformer transformedValue:[NSNumber numberWithShort:keyCode]];
+	if (keyCode == SRKeyComboNoCode)
+		return nil;
+	
+    return [[NSValueTransformer valueTransformerForName: NSStringFromClass(SRKeyCodeTransformer.class)] transformedValue:[NSNumber numberWithShort:keyCode]];
 }
 
 //---------------------------------------------------------- 
@@ -48,6 +48,9 @@ NSString *SRStringForCarbonModifierFlags(NSUInteger flags)
 //---------------------------------------------------------- 
 NSString *SRStringForCarbonModifierFlagsAndKeyCode(NSUInteger flags, NSInteger keyCode)
 {
+	if (keyCode == SRKeyComboNoCode)
+		return nil;
+	
     return [NSString stringWithFormat: @"%@%@", 
         SRStringForCarbonModifierFlags(flags), 
         SRStringForKeyCode(keyCode)];
@@ -72,7 +75,10 @@ NSString *SRStringForCocoaModifierFlags(NSUInteger flags)
 //---------------------------------------------------------- 
 NSString *SRStringForCocoaModifierFlagsAndKeyCode(NSUInteger flags, NSInteger keyCode)
 {
-    return [NSString stringWithFormat: @"%@%@", 
+	if (keyCode == SRKeyComboNoCode)
+		return nil;
+	
+    return [NSString stringWithFormat: @"%@%@",
         SRStringForCocoaModifierFlags(flags),
         SRStringForKeyCode(keyCode)];
 }
@@ -82,6 +88,9 @@ NSString *SRStringForCocoaModifierFlagsAndKeyCode(NSUInteger flags, NSInteger ke
 //---------------------------------------------------------- 
 NSString *SRReadableStringForCarbonModifierFlagsAndKeyCode(NSUInteger flags, NSInteger keyCode)
 {
+	if (keyCode == SRKeyComboNoCode)
+		return nil;
+	
     NSString *readableString = [NSString stringWithFormat:@"%@%@%@%@%@", 
 		(flags & cmdKey ? SRLocalizedString(@"Command + ") : @""),
 		(flags & optionKey ? SRLocalizedString(@"Option + ") : @""),
@@ -96,6 +105,9 @@ NSString *SRReadableStringForCarbonModifierFlagsAndKeyCode(NSUInteger flags, NSI
 //---------------------------------------------------------- 
 NSString *SRReadableStringForCocoaModifierFlagsAndKeyCode(NSUInteger flags, NSInteger keyCode)
 {
+	if (keyCode == SRKeyComboNoCode)
+		return nil;
+	
     NSString *readableString = [NSString stringWithFormat:@"%@%@%@%@%@", 
 		(flags & NSCommandKeyMask ? SRLocalizedString(@"Command + ") : @""),
 		(flags & NSAlternateKeyMask ? SRLocalizedString(@"Option + ") : @""),
