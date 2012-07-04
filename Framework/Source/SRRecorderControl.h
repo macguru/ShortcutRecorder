@@ -32,12 +32,13 @@
 @property(nonatomic) BOOL recordsEscapeKey;
 @property(nonatomic) BOOL canCaptureGlobalHotKeys;
 
-@property(nonatomic, weak) IBOutlet id <SRRecorderDelegate> delegate;
+@property(nonatomic, unsafe_unretained) IBOutlet id <SRRecorderDelegate> delegate;
 
 @end
 
 // Delegate Methods
 @protocol SRRecorderDelegate <NSObject>
+@optional
 
 - (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
 - (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(SRKeyCombo)newKeyCombo;
