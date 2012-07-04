@@ -49,11 +49,9 @@
                     SRLocalizedString(@"The key combination \"%@\" can't be used because %@."), 
                     SRReadableStringForCarbonModifierFlagsAndKeyCode(flags, keyCode),
                     (delegateReason && [delegateReason length]) ? delegateReason : @"it's already used"];
-                NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-										  description, NSLocalizedDescriptionKey,
-										  recoverySuggestion, NSLocalizedRecoverySuggestionErrorKey,
-										  [NSArray arrayWithObject:@"OK"], NSLocalizedRecoveryOptionsErrorKey, // Is this needed? Shouldn't it show 'OK' by default? -AK
-										  nil];
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: description,
+										  NSLocalizedRecoverySuggestionErrorKey: recoverySuggestion,
+										  NSLocalizedRecoveryOptionsErrorKey: @[@"OK"]};
                 *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
             }
 			return YES;
@@ -88,7 +86,7 @@
 	while ((globalHotKeyInfoDictionary = [globalHotKeysEnumerator nextObject]))
 	{
 		// Only check if global hotkey is enabled
-		if ((__bridge CFBooleanRef)[globalHotKeyInfoDictionary objectForKey:(NSString *)kHISymbolicHotKeyEnabled] != kCFBooleanTrue)
+		if ((__bridge CFBooleanRef)globalHotKeyInfoDictionary[(NSString *)kHISymbolicHotKeyEnabled] != kCFBooleanTrue)
             continue;
 		
         globalCommandMod    = NO;
@@ -96,9 +94,9 @@
         globalShiftMod      = NO;
         globalCtrlMod       = NO;
         
-        globalHotKeyCharCode = [(NSNumber *)[globalHotKeyInfoDictionary objectForKey:(NSString *)kHISymbolicHotKeyCode] shortValue];
+        globalHotKeyCharCode = [(NSNumber *)globalHotKeyInfoDictionary[(NSString *)kHISymbolicHotKeyCode] shortValue];
         
-        CFNumberGetValue((__bridge CFNumberRef)[globalHotKeyInfoDictionary objectForKey:(NSString *)kHISymbolicHotKeyModifiers],kCFNumberSInt32Type,&globalHotKeyFlags);
+        CFNumberGetValue((__bridge CFNumberRef)globalHotKeyInfoDictionary[(NSString *)kHISymbolicHotKeyModifiers],kCFNumberSInt32Type,&globalHotKeyFlags);
         
         if (globalHotKeyFlags & cmdKey)        globalCommandMod = YES;
         if (globalHotKeyFlags & optionKey)     globalOptionMod = YES;
@@ -122,11 +120,9 @@
                 NSString *recoverySuggestion = [NSString stringWithFormat: 
                     SRLocalizedString(@"The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)"), 
                     SRReadableStringForCarbonModifierFlagsAndKeyCode(flags, keyCode)];
-				NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-										  description, NSLocalizedDescriptionKey,
-										  recoverySuggestion, NSLocalizedRecoverySuggestionErrorKey,
-										  [NSArray arrayWithObject:@"OK"], NSLocalizedRecoveryOptionsErrorKey,
-										  nil];
+				NSDictionary *userInfo = @{NSLocalizedDescriptionKey: description,
+										  NSLocalizedRecoverySuggestionErrorKey: recoverySuggestion,
+										  NSLocalizedRecoveryOptionsErrorKey: @[@"OK"]};
                 *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
             }
             return YES;
@@ -198,11 +194,9 @@
                         SRLocalizedString(@"The key combination \"%@\" can't be used because it's already used by the menu item \"%@\"."), 
                         SRReadableStringForCocoaModifierFlagsAndKeyCode(menuItemModifierFlags, keyCode),
                         [menuItem title]];
-                    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-											  description, NSLocalizedDescriptionKey,
-											  recoverySuggestion, NSLocalizedRecoverySuggestionErrorKey,
-											  [NSArray arrayWithObject:@"OK"], NSLocalizedRecoveryOptionsErrorKey,
-											  nil];
+                    NSDictionary *userInfo = @{NSLocalizedDescriptionKey: description,
+											  NSLocalizedRecoverySuggestionErrorKey: recoverySuggestion,
+											  NSLocalizedRecoveryOptionsErrorKey: @[@"OK"]};
                     *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
                 }
 				return YES;

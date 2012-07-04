@@ -36,10 +36,10 @@ NSString *SRStringForKeyCode(NSInteger keyCode)
 NSString *SRStringForCarbonModifierFlags(NSUInteger flags)
 {
     NSString *modifierFlagsString = [NSString stringWithFormat:@"%@%@%@%@", 
-		(flags & controlKey ? [NSString stringWithFormat:@"%C", KeyboardControlGlyph] : @""),
-		(flags & optionKey ? [NSString stringWithFormat:@"%C", KeyboardOptionGlyph] : @""),
-		(flags & shiftKey ? [NSString stringWithFormat:@"%C", KeyboardShiftGlyph] : @""),
-		(flags & cmdKey ? [NSString stringWithFormat:@"%C", KeyboardCommandGlyph] : @"")];
+		(flags & controlKey ? SRChar(KeyboardControlGlyph) : @""),
+		(flags & optionKey ? SRChar(KeyboardOptionGlyph) : @""),
+		(flags & shiftKey ? SRChar(KeyboardShiftGlyph) : @""),
+		(flags & cmdKey ? SRChar(KeyboardCommandGlyph) : @"")];
 	return modifierFlagsString;
 }
 
@@ -59,10 +59,10 @@ NSString *SRStringForCarbonModifierFlagsAndKeyCode(NSUInteger flags, NSInteger k
 NSString *SRStringForCocoaModifierFlags(NSUInteger flags)
 {
     NSString *modifierFlagsString = [NSString stringWithFormat:@"%@%@%@%@", 
-		(flags & NSControlKeyMask ? [NSString stringWithFormat:@"%C", KeyboardControlGlyph] : @""),
-		(flags & NSAlternateKeyMask ? [NSString stringWithFormat:@"%C", KeyboardOptionGlyph] : @""),
-		(flags & NSShiftKeyMask ? [NSString stringWithFormat:@"%C", KeyboardShiftGlyph] : @""),
-		(flags & NSCommandKeyMask ? [NSString stringWithFormat:@"%C", KeyboardCommandGlyph] : @"")];
+		(flags & NSControlKeyMask ? SRChar(KeyboardControlGlyph) : @""),
+		(flags & NSAlternateKeyMask ? SRChar(KeyboardOptionGlyph) : @""),
+		(flags & NSShiftKeyMask ? SRChar(KeyboardShiftGlyph) : @""),
+		(flags & NSCommandKeyMask ? SRChar(KeyboardCommandGlyph) : @"")];
 	
 	return modifierFlagsString;
 }

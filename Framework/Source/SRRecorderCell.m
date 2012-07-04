@@ -101,13 +101,13 @@
 	NSAssert([aCoder allowsKeyedCoding], @"Keyed coder required");
 	
 	[aCoder encodeObject:[NSNumber numberWithShort: keyCombo.code] forKey:@"keyComboCode"];
-	[aCoder encodeObject:[NSNumber numberWithUnsignedInteger:keyCombo.flags] forKey:@"keyComboFlags"];
+	[aCoder encodeObject:@(keyCombo.flags) forKey:@"keyComboFlags"];
 	
-	[aCoder encodeObject:[NSNumber numberWithUnsignedInteger:allowedModifierFlags] forKey:@"allowedModifierFlags"];
-	[aCoder encodeObject:[NSNumber numberWithUnsignedInteger:requiredModifierFlags] forKey:@"requiredModifierFlags"];
+	[aCoder encodeObject:@(allowedModifierFlags) forKey:@"allowedModifierFlags"];
+	[aCoder encodeObject:@(requiredModifierFlags) forKey:@"requiredModifierFlags"];
 	
-	[aCoder encodeObject:[NSNumber numberWithBool: allowsBareKeys] forKey:@"allowsBareKeys"];
-	[aCoder encodeObject:[NSNumber numberWithBool: recordsEscapeKey] forKey:@"recordsEscapeKey"];
+	[aCoder encodeObject:@(allowsBareKeys) forKey:@"allowsBareKeys"];
+	[aCoder encodeObject:@(recordsEscapeKey) forKey:@"recordsEscapeKey"];
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -229,10 +229,9 @@
 		{
 	// Only the KeyCombo should be black and in a bigger font size
 			BOOL recordingOrEmpty = (isVaguelyRecording || [self _isEmpty]);
-			NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys: mpstyle, NSParagraphStyleAttributeName,
-				[NSFont systemFontOfSize:(recordingOrEmpty ? [NSFont labelFontSize] : [NSFont smallSystemFontSize])], NSFontAttributeName,
-				[(recordingOrEmpty ? [NSColor disabledControlTextColor] : [NSColor blackColor]) colorWithAlphaComponent:alphaRecordingText], NSForegroundColorAttributeName, 
-				nil];
+			NSDictionary *attributes = @{NSParagraphStyleAttributeName: mpstyle,
+				NSFontAttributeName: [NSFont systemFontOfSize:(recordingOrEmpty ? [NSFont labelFontSize] : [NSFont smallSystemFontSize])],
+				NSForegroundColorAttributeName: [(recordingOrEmpty ? [NSColor disabledControlTextColor] : [NSColor blackColor]) colorWithAlphaComponent:alphaRecordingText]};
 		// Recording, but no modifier keys down
 			if (![self _validModifierFlags: _recordingFlags])
 			{
@@ -268,10 +267,9 @@
 		else
 		{
 			// Only the KeyCombo should be black and in a bigger font size
-			NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys: mpstyle, NSParagraphStyleAttributeName,
-				[NSFont systemFontOfSize:([self _isEmpty] ? [NSFont labelFontSize] : [NSFont smallSystemFontSize])], NSFontAttributeName,
-				[([self _isEmpty] ? [NSColor disabledControlTextColor] : [NSColor blackColor]) colorWithAlphaComponent:alphaCombo], NSForegroundColorAttributeName, 
-				nil];
+			NSDictionary *attributes = @{NSParagraphStyleAttributeName: mpstyle,
+				NSFontAttributeName: [NSFont systemFontOfSize:([self _isEmpty] ? [NSFont labelFontSize] : [NSFont smallSystemFontSize])],
+				NSForegroundColorAttributeName: [([self _isEmpty] ? [NSColor disabledControlTextColor] : [NSColor blackColor]) colorWithAlphaComponent:alphaCombo]};
 			
 			// Not recording...
 			if ([self _isEmpty])
@@ -505,7 +503,7 @@
 								andFlagsTaken:[self _filteredCocoaToCarbonFlags:flags]
 										error:&error]) {
 						// display the error...
-						NSAlert *alert = [NSAlert alertWithMessageText:error.localizedDescription defaultButton:[error.localizedRecoveryOptions objectAtIndex: 0] alternateButton:nil otherButton:nil informativeTextWithFormat:(error.localizedFailureReason) ?: @""];
+						NSAlert *alert = [NSAlert alertWithMessageText:error.localizedDescription defaultButton:(error.localizedRecoveryOptions)[0] alternateButton:nil otherButton:nil informativeTextWithFormat:(error.localizedFailureReason) ?: @""];
 						[alert setAlertStyle:NSCriticalAlertStyle];
 						[alert runModal];
 						

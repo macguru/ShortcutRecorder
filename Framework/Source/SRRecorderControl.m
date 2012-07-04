@@ -233,11 +233,9 @@
     if (keyCombo.code == ShortcutRecorderEmptyCode || keyCombo.flags == ShortcutRecorderEmptyFlags)
         return nil;
 
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            [self charactersIgnoringModifiers], @"characters",
-            [NSNumber numberWithInteger:keyCombo.code], @"keyCode",
-            [NSNumber numberWithUnsignedInteger:keyCombo.flags], @"modifierFlags",
-            nil];
+    return @{@"characters": [self charactersIgnoringModifiers],
+            @"keyCode": @(keyCombo.code),
+            @"modifierFlags": @(keyCombo.flags)};
 }
 
 - (void)setObjectValue:(NSDictionary *)shortcut
@@ -245,8 +243,8 @@
     KeyCombo keyCombo = SRMakeKeyCombo(ShortcutRecorderEmptyCode, ShortcutRecorderEmptyFlags);
 	
     if (shortcut != nil && [shortcut isKindOfClass:[NSDictionary class]]) {
-        NSNumber *keyCode = [shortcut objectForKey:@"keyCode"];
-        NSNumber *modifierFlags = [shortcut objectForKey:@"modifierFlags"];
+        NSNumber *keyCode = shortcut[@"keyCode"];
+        NSNumber *modifierFlags = shortcut[@"modifierFlags"];
 		
         if ([keyCode isKindOfClass:[NSNumber class]] && [modifierFlags isKindOfClass:[NSNumber class]]) {
             keyCombo.code = [keyCode integerValue];
@@ -298,7 +296,7 @@
 
 	// apply the value transformer, if one has been set
     NSDictionary *value = [self objectValue];
-	NSDictionary *bindingOptions = [bindingInfo objectForKey:NSOptionsKey];
+	NSDictionary *bindingOptions = bindingInfo[NSOptionsKey];
 	if (bindingOptions != nil) {
 		NSValueTransformer *transformer = [bindingOptions valueForKey:NSValueTransformerBindingOption];
 		if (NilOrNull(transformer)) {
@@ -315,13 +313,13 @@
 		}
 	}
 
-	id boundObject = [bindingInfo objectForKey:NSObservedObjectKey];
+	id boundObject = bindingInfo[NSObservedObjectKey];
 	if (NilOrNull(boundObject)) {
 		NSLog(@"ERROR: NSObservedObjectKey was nil for value binding in %s", __PRETTY_FUNCTION__);
 		return;
 	}
 
-	NSString *boundKeyPath = [bindingInfo objectForKey:NSObservedKeyPathKey];
+	NSString *boundKeyPath = bindingInfo[NSObservedKeyPathKey];
     if (NilOrNull(boundKeyPath)) {
 		NSLog(@"ERROR: NSObservedKeyPathKey was nil for value binding in %s", __PRETTY_FUNCTION__);
 		return;

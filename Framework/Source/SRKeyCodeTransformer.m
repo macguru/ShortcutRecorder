@@ -36,62 +36,62 @@ static NSArray              *SRKeyCodeTransformerPadKeys			= nil;
     
     // Some keys need a special glyph
 	SRKeyCodeTransformerKeyCodeToString = [[NSDictionary alloc] initWithObjectsAndKeys:
-		@"F1", SRInt(122),
-		@"F2", SRInt(120),
-		@"F3", SRInt(99),
-		@"F4", SRInt(118),
-		@"F5", SRInt(96),
-		@"F6", SRInt(97),
-		@"F7", SRInt(98),
-		@"F8", SRInt(100),
-		@"F9", SRInt(101),
-		@"F10", SRInt(109),
-		@"F11", SRInt(103),
-		@"F12", SRInt(111),
-		@"F13", SRInt(105),
-		@"F14", SRInt(107),
-		@"F15", SRInt(113),
-		@"F16", SRInt(106),
-		@"F17", SRInt(64),
-		@"F18", SRInt(79),
-		@"F19", SRInt(80),
-		SRLocalizedString(@"Space"), SRInt(49),
-		SRChar(KeyboardDeleteLeftGlyph), SRInt(51),
-		SRChar(KeyboardDeleteRightGlyph), SRInt(117),
-		SRChar(KeyboardPadClearGlyph), SRInt(71),
-		SRChar(KeyboardLeftArrowGlyph), SRInt(123),
-		SRChar(KeyboardRightArrowGlyph), SRInt(124),
-		SRChar(KeyboardUpArrowGlyph), SRInt(126),
-		SRChar(KeyboardDownArrowGlyph), SRInt(125),
-		SRChar(KeyboardSoutheastArrowGlyph), SRInt(119),
-		SRChar(KeyboardNorthwestArrowGlyph), SRInt(115),
-		SRChar(KeyboardEscapeGlyph), SRInt(53),
-		SRChar(KeyboardPageDownGlyph), SRInt(121),
-		SRChar(KeyboardPageUpGlyph), SRInt(116),
-		SRChar(KeyboardReturnR2LGlyph), SRInt(36),
-		SRChar(KeyboardReturnGlyph), SRInt(76),
-		SRChar(KeyboardTabRightGlyph), SRInt(48),
-		SRChar(KeyboardHelpGlyph), SRInt(114),
+		@"F1", @(122),
+		@"F2", @(120),
+		@"F3", @(99),
+		@"F4", @(118),
+		@"F5", @(96),
+		@"F6", @(97),
+		@"F7", @(98),
+		@"F8", @(100),
+		@"F9", @(101),
+		@"F10", @(109),
+		@"F11", @(103),
+		@"F12", @(111),
+		@"F13", @(105),
+		@"F14", @(107),
+		@"F15", @(113),
+		@"F16", @(106),
+		@"F17", @(64),
+		@"F18", @(79),
+		@"F19", @(80),
+		SRLocalizedString(@"Space"), @(49),
+		SRChar(KeyboardDeleteLeftGlyph), @(51),
+		SRChar(KeyboardDeleteRightGlyph), @(117),
+		SRChar(KeyboardPadClearGlyph), @(71),
+		SRChar(KeyboardLeftArrowGlyph), @(123),
+		SRChar(KeyboardRightArrowGlyph), @(124),
+		SRChar(KeyboardUpArrowGlyph), @(126),
+		SRChar(KeyboardDownArrowGlyph), @(125),
+		SRChar(KeyboardSoutheastArrowGlyph), @(119),
+		SRChar(KeyboardNorthwestArrowGlyph), @(115),
+		SRChar(KeyboardEscapeGlyph), @(53),
+		SRChar(KeyboardPageDownGlyph), @(121),
+		SRChar(KeyboardPageUpGlyph), @(116),
+		SRChar(KeyboardReturnR2LGlyph), @(36),
+		SRChar(KeyboardReturnGlyph), @(76),
+		SRChar(KeyboardTabRightGlyph), @(48),
+		SRChar(KeyboardHelpGlyph), @(114),
 		nil];    
     
     // We want to identify if the key was pressed on the numpad
 	SRKeyCodeTransformerPadKeys = [[NSArray alloc] initWithObjects: 
-		SRInt(65), // ,
-		SRInt(67), // *
-		SRInt(69), // +
-		SRInt(75), // /
-		SRInt(78), // -
-		SRInt(81), // =
-		SRInt(82), // 0
-		SRInt(83), // 1
-		SRInt(84), // 2
-		SRInt(85), // 3
-		SRInt(86), // 4
-		SRInt(87), // 5
-		SRInt(88), // 6
-		SRInt(89), // 7
-		SRInt(91), // 8
-		SRInt(92), // 9
+		@(65), // ,
+		@(67), // *
+		@(69), // +
+		@(75), // /
+		@(78), // -
+		@(81), // =
+		@(82), // 0
+		@(83), // 1
+		@(84), // 2
+		@(85), // 3
+		@(86), // 4
+		@(87), // 5
+		@(88), // 6
+		@(89), // 7
+		@(91), // 8
+		@(92), // 9
 		nil];
     
     // generate the string to keycode mapping dict...
@@ -125,11 +125,11 @@ static NSArray              *SRKeyCodeTransformerPadKeys			= nil;
 		return nil;
 	
 	// We have some special gylphs for some special keys...
-	NSString *unmappedString = [SRKeyCodeTransformerKeyCodeToString objectForKey: SRInt(keyCode)];
+	NSString *unmappedString = SRKeyCodeTransformerKeyCodeToString[@(keyCode)];
 	if (unmappedString != nil) 
 		return unmappedString;
 	
-	BOOL isPadKey = [SRKeyCodeTransformerPadKeys containsObject: SRInt(keyCode)];	
+	BOOL isPadKey = [SRKeyCodeTransformerPadKeys containsObject: @(keyCode)];
 	
 	OSStatus err;
 	TISInputSourceRef tisSource = TISCopyCurrentKeyboardInputSource();
@@ -184,7 +184,7 @@ static NSArray              *SRKeyCodeTransformerPadKeys			= nil;
         return nil;
     
     // try and retrieve a mapped keycode from the reverse mapping dict...
-    return [SRKeyCodeTransformerStringToKeyCode objectForKey: value];
+    return SRKeyCodeTransformerStringToKeyCode[value];
 }
 
 @end
@@ -203,10 +203,10 @@ static NSArray              *SRKeyCodeTransformerPadKeys			= nil;
     
     // loop over every keycode (0 - 127) finding its current string mapping...
     for (NSUInteger i = 0U; i < 128U; i++) {
-        NSNumber *keyCode = [NSNumber numberWithUnsignedInteger:i];
+        NSNumber *keyCode = @(i);
         NSString *string = [transformer transformedValue:keyCode];
         if ((string) && ([string length])) {
-            [SRKeyCodeTransformerStringToKeyCode setObject:keyCode forKey:string];
+            SRKeyCodeTransformerStringToKeyCode[string] = keyCode;
         }
     }
 }

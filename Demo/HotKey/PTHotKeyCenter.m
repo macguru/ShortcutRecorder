@@ -79,7 +79,7 @@ static PTHotKeyCenter *_sharedHotKeyCenter = nil;
 	[hotKey setCarbonEventHotKeyRef:carbonHotKey];
 
 	if(hotKey)
-		[mHotKeys setObject: hotKey forKey: [NSNumber numberWithInteger:hotKeyID.id]];
+		mHotKeys[[NSNumber numberWithInteger:hotKeyID.id]] = hotKey;
 
 	[self _updateEventHandler];
 
@@ -151,7 +151,7 @@ static PTHotKeyCenter *_sharedHotKeyCenter = nil;
 
 - (PTHotKey*)_hotKeyForCarbonHotKeyID:(EventHotKeyID)hotKeyID
 {
-	return [mHotKeys objectForKey:[NSNumber numberWithInteger:hotKeyID.id]];
+	return mHotKeys[[NSNumber numberWithInteger:hotKeyID.id]];
 }
 
 - (void)_updateEventHandler

@@ -96,7 +96,6 @@ enum {
 #define SRLocalizedString(key) NSLocalizedStringFromTableInBundle(key, @"ShortcutRecorder", [NSBundle bundleForClass: [SRValidator class]], nil)
 
 // Macros for glyps
-#define SRInt(x) [NSNumber numberWithInteger: x]
 #define SRChar(x) [NSString stringWithFormat: @"%C", x]
 
 // Some default values

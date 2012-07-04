@@ -45,10 +45,10 @@
 	}
 	else
 	{
-		keyCode = [[plist objectForKey: @"keyCode"] intValue];
+		keyCode = [plist[@"keyCode"] intValue];
 		if(keyCode < 0) keyCode = -1;
 
-		modifiers = [[plist objectForKey: @"modifiers"] intValue];
+		modifiers = [plist[@"modifiers"] intValue];
 		if(modifiers <= 0) modifiers = -1;
 	}
 
@@ -57,10 +57,8 @@
 
 - (id)plistRepresentation
 {
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-				[NSNumber numberWithInteger: [self keyCode]], @"keyCode",
-				[NSNumber numberWithInteger: [self modifiers]], @"modifiers",
-				nil];
+	return @{@"keyCode": @([self keyCode]),
+				@"modifiers": [NSNumber numberWithInteger: [self modifiers]]};
 }
 
 - (id)copyWithZone:(NSZone*)zone;
@@ -144,7 +142,7 @@
 	NSString* str;
 
 	key = [NSString stringWithFormat: @"%d", keyCode];
-	str = [dict objectForKey: key];
+	str = dict[key];
 
 	if(!str)
 		str = [NSString stringWithFormat: @"%X", keyCode];
@@ -162,8 +160,8 @@
 	keyCodeStr = [NSString stringWithFormat: @"%d", keyCode];
 
 	//Handled if its not handled by translator
-	unmappedKeys = [dict objectForKey:@"unmappedKeys"];
-	result = [unmappedKeys objectForKey: keyCodeStr];
+	unmappedKeys = dict[@"unmappedKeys"];
+	result = unmappedKeys[keyCodeStr];
 	if(result)
 		return result;
 
@@ -171,10 +169,10 @@
 	result = [[[PTKeyCodeTranslator currentTranslator] translateKeyCode:keyCode] uppercaseString];
 
 	//Handle if its a key-pad key
-	padKeys = [dict objectForKey:@"padKeys"];
+	padKeys = dict[@"padKeys"];
 	if([padKeys indexOfObject: keyCodeStr] != NSNotFound)
 	{
-		result = [NSString stringWithFormat:@"%@ %@", [dict objectForKey:@"padKeyString"], result];
+		result = [NSString stringWithFormat:@"%@ %@", dict[@"padKeyString"], result];
 	}
 
 	return result;
@@ -185,7 +183,7 @@
 	NSDictionary* dict;
 
 	dict = [self _keyCodesDictionary];
-	if([[dict objectForKey: @"version"] intValue] <= 0)
+	if([dict[@"version"] intValue] <= 0)
 		return [self _stringForKeyCode: keyCode legacyKeyCodeMap: dict];
 
 	return [self _stringForKeyCode: keyCode newKeyCodeMap: dict];
