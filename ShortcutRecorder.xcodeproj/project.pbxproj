@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5000F14615A475CA005DAB6F /* ShortcutRecorder.strings in Copy Resources */ = {isa = PBXBuildFile; fileRef = 502378B115A4754300F7A1AD /* ShortcutRecorder.strings */; };
 		50FF9A511521F33C001565E4 /* SRRemoveShortcut.tif in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A481521C1E5001565E4 /* SRRemoveShortcut.tif */; };
 		50FF9A521521F33C001565E4 /* SRRemoveShortcutPressed.tif in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A491521C1E5001565E4 /* SRRemoveShortcutPressed.tif */; };
 		50FF9A531521F33C001565E4 /* SRRemoveShortcutRollover.tif in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A4A1521C1E5001565E4 /* SRRemoveShortcutRollover.tif */; };
@@ -58,6 +59,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				5000F14615A475CA005DAB6F /* ShortcutRecorder.strings in Copy Resources */,
 				50FF9A511521F33C001565E4 /* SRRemoveShortcut.tif in Copy Resources */,
 				50FF9A521521F33C001565E4 /* SRRemoveShortcutPressed.tif in Copy Resources */,
 				50FF9A531521F33C001565E4 /* SRRemoveShortcutRollover.tif in Copy Resources */,
@@ -100,6 +102,13 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* ShortcutRecorder_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutRecorder_Prefix.pch; sourceTree = "<group>"; };
+		502378B215A4754300F7A1AD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		502378B415A4755000F7A1AD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		507562DE15A4757200C73134 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		507562E015A4757B00C73134 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		507562E215A4757F00C73134 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
+		507562E415A4758300C73134 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		507562E615A4758600C73134 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		50FF9A481521C1E5001565E4 /* SRRemoveShortcut.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcut.tif; sourceTree = "<group>"; };
 		50FF9A491521C1E5001565E4 /* SRRemoveShortcutPressed.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcutPressed.tif; sourceTree = "<group>"; };
 		50FF9A4A1521C1E5001565E4 /* SRRemoveShortcutRollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcutRollover.tif; sourceTree = "<group>"; };
@@ -110,13 +119,6 @@
 		74C3670F0A246B4900B69171 /* SRValidator.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SRValidator.m; path = Framework/Source/SRValidator.m; sourceTree = SOURCE_ROOT; };
 		74C367100A246B4900B69171 /* SRCommon.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SRCommon.h; path = Framework/Source/SRCommon.h; sourceTree = SOURCE_ROOT; };
 		74C367110A246B4900B69171 /* SRCommon.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SRCommon.m; path = Framework/Source/SRCommon.m; sourceTree = SOURCE_ROOT; };
-		9371C78E15167D2C008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		9371C78F15167D35008B7F36 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = /Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/de.lproj/ShortcutRecorder.strings; sourceTree = "<absolute>"; };
-		9371C79115167D49008B7F36 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = /Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/nl.lproj/ShortcutRecorder.strings; sourceTree = "<absolute>"; };
-		9371C79315167D4D008B7F36 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = /Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/pl.lproj/ShortcutRecorder.strings; sourceTree = "<absolute>"; };
-		9371C79415167D58008B7F36 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = /Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/sv.lproj/ShortcutRecorder.strings; sourceTree = "<absolute>"; };
-		9371C79515167D67008B7F36 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "/Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/pt-BR.lproj/ShortcutRecorder.strings"; sourceTree = "<absolute>"; };
-		9371C79615167D6E008B7F36 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = /Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/sk.lproj/ShortcutRecorder.strings; sourceTree = "<absolute>"; };
 		9371C79815167DE2008B7F36 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9371C79A15167DE2008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9371C79C15167DE2008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -318,7 +320,7 @@
 		932B762015167A660092909C /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				9371C78D15167D2C008B7F36 /* ShortcutRecorder.strings */,
+				502378B115A4754300F7A1AD /* ShortcutRecorder.strings */,
 			);
 			name = Framework;
 			path = Framework/Localizations;
@@ -469,16 +471,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9371C78D15167D2C008B7F36 /* ShortcutRecorder.strings */ = {
+		502378B115A4754300F7A1AD /* ShortcutRecorder.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9371C78E15167D2C008B7F36 /* en */,
-				9371C78F15167D35008B7F36 /* de */,
-				9371C79115167D49008B7F36 /* nl */,
-				9371C79315167D4D008B7F36 /* pl */,
-				9371C79415167D58008B7F36 /* sv */,
-				9371C79515167D67008B7F36 /* pt-BR */,
-				9371C79615167D6E008B7F36 /* sk */,
+				502378B215A4754300F7A1AD /* de */,
+				502378B415A4755000F7A1AD /* nl */,
+				507562DE15A4757200C73134 /* en */,
+				507562E015A4757B00C73134 /* pl */,
+				507562E215A4757F00C73134 /* pt-BR */,
+				507562E415A4758300C73134 /* sk */,
+				507562E615A4758600C73134 /* sv */,
 			);
 			name = ShortcutRecorder.strings;
 			sourceTree = "<group>";
@@ -540,7 +542,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "Framework/SR_LeopardFramework-Info.plist";
+				INFOPLIST_FILE = "Framework/ShortcutRecorder-Info.plist";
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				PRODUCT_NAME = ShortcutRecorder;
 			};
@@ -557,7 +559,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "Framework/SR_LeopardFramework-Info.plist";
+				INFOPLIST_FILE = "Framework/ShortcutRecorder-Info.plist";
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				PRODUCT_NAME = ShortcutRecorder;
 			};
