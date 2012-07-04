@@ -22,6 +22,8 @@ typedef struct {
 	NSInteger code; // -1 for no code
 } SRKeyCombo;
 
+#define SREmptyKeyCombo ((SRKeyCombo){0, -1})
+
 
 #pragma mark - Enums
 
@@ -143,6 +145,10 @@ SRKeyCombo SRKeyComboFromDictionary(NSDictionary *dict);
 
 FOUNDATION_STATIC_INLINE SRKeyCombo SRMakeKeyCombo(NSInteger code, NSUInteger flags) {
 	return (SRKeyCombo){flags, code};
+}
+
+FOUNDATION_STATIC_INLINE BOOL SREqualKeyCombos(SRKeyCombo combo1, SRKeyCombo combo2) {
+	return (combo1.code == -1 && combo2.code == -1) || (combo1.code == combo2.code && combo1.flags == combo2.flags);
 }
 
 FOUNDATION_STATIC_INLINE BOOL SRIsSpecialKey(NSInteger keyCode) {
