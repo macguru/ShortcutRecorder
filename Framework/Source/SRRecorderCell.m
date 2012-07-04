@@ -503,7 +503,7 @@
 								andFlagsTaken:[self _filteredCocoaToCarbonFlags:flags]
 										error:&error]) {
 						// display the error...
-						NSAlert *alert = [NSAlert alertWithMessageText:error.localizedDescription defaultButton:(error.localizedRecoveryOptions)[0] alternateButton:nil otherButton:nil informativeTextWithFormat:(error.localizedFailureReason) ?: @""];
+						NSAlert *alert = [NSAlert alertWithMessageText:error.localizedDescription defaultButton:(error.localizedRecoveryOptions)[0] alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@", (error.localizedFailureReason) ?: @""];
 						[alert setAlertStyle:NSCriticalAlertStyle];
 						[alert runModal];
 						

@@ -17,10 +17,11 @@
 
 #pragma mark - Typedefs
 
-typedef struct _KeyCombo {
+typedef struct {
 	NSUInteger flags; // 0 for no flags
 	NSInteger code; // -1 for no code
 } KeyCombo;
+
 
 #pragma mark - Enums
 
@@ -96,7 +97,7 @@ enum {
 #define SRLocalizedString(key) NSLocalizedStringFromTableInBundle(key, @"ShortcutRecorder", [NSBundle bundleForClass: [SRValidator class]], nil)
 
 // Macros for glyps
-#define SRChar(x) [NSString stringWithFormat: @"%C", x]
+#define SRChar(x) [NSString stringWithCharacters:(const unichar[]){x} length:1]
 
 // Some default values
 #define ShortcutRecorderEmptyFlags 0
