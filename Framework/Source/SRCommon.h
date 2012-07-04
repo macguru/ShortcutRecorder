@@ -15,14 +15,17 @@
 #import <Carbon/Carbon.h>
 #import <CoreServices/CoreServices.h>
 
-#pragma mark - Typedefs
+#pragma mark - SRKeyCombo typedef
 
 typedef struct {
-	NSUInteger flags; // 0 for no flags
-	NSInteger code; // -1 for no code
+	NSUInteger flags;	// SRKeyComboNoFlags for no flags
+	NSInteger code;		// SRKeyComboNoCode for no code
 } SRKeyCombo;
 
-#define SREmptyKeyCombo ((SRKeyCombo){0, -1})
+#define SRKeyComboNoFlags	0
+#define SRKeyComboNoCode	-1
+
+#define SREmptyKeyCombo ((SRKeyCombo){SRKeyComboNoFlags, SRKeyComboNoCode})
 
 
 #pragma mark - Enums
@@ -148,7 +151,7 @@ FOUNDATION_STATIC_INLINE SRKeyCombo SRMakeKeyCombo(NSInteger code, NSUInteger fl
 }
 
 FOUNDATION_STATIC_INLINE BOOL SREqualKeyCombos(SRKeyCombo combo1, SRKeyCombo combo2) {
-	return (combo1.code == -1 && combo2.code == -1) || (combo1.code == combo2.code && combo1.flags == combo2.flags);
+	return (combo1.code == SRKeyComboNoCode && combo2.code == SRKeyComboNoCode) || (combo1.code == combo2.code && combo1.flags == combo2.flags);
 }
 
 FOUNDATION_STATIC_INLINE BOOL SRIsSpecialKey(NSInteger keyCode) {
