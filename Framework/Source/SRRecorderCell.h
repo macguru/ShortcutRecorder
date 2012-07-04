@@ -12,7 +12,7 @@
 //      Jamie Kirkpatrick
 //		Max Seelemann
 
-#import "SRCommon.h"
+#import <ShortcutRecorder/SRCommon.h>
 @protocol SRRecorderCellDelegate;
 
 

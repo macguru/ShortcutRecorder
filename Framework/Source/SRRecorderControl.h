@@ -11,7 +11,7 @@
 //      Jesper
 //      Jamie Kirkpatrick
 
-#import "SRCommon.h"
+#import <ShortcutRecorder/SRCommon.h>
 @protocol SRRecorderDelegate;
 
 
