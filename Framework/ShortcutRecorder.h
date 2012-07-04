@@ -15,3 +15,4 @@
 #import <ShortcutRecorder/SRValidator.h>
 #import <ShortcutRecorder/SRRecorderCell.h>
 #import <ShortcutRecorder/SRRecorderControl.h>
+#import <ShortcutRecorder/NSMenuItem+SRConfiguration.h>

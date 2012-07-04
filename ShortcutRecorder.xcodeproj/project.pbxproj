@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5000F14615A475CA005DAB6F /* ShortcutRecorder.strings in Copy Resources */ = {isa = PBXBuildFile; fileRef = 502378B115A4754300F7A1AD /* ShortcutRecorder.strings */; };
+		504536E115A47B2B0088AD49 /* NSMenuItem+SRConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 504536DF15A47B2A0088AD49 /* NSMenuItem+SRConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		504536E215A47B2B0088AD49 /* NSMenuItem+SRConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 504536E015A47B2B0088AD49 /* NSMenuItem+SRConfiguration.m */; };
 		50FF9A511521F33C001565E4 /* SRRemoveShortcut.tif in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A481521C1E5001565E4 /* SRRemoveShortcut.tif */; };
 		50FF9A521521F33C001565E4 /* SRRemoveShortcutPressed.tif in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A491521C1E5001565E4 /* SRRemoveShortcutPressed.tif */; };
 		50FF9A531521F33C001565E4 /* SRRemoveShortcutRollover.tif in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A4A1521C1E5001565E4 /* SRRemoveShortcutRollover.tif */; };
@@ -38,7 +40,6 @@
 		93983B1E0DA43C4E007F53F3 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B57CB1309C482DC0000E739 /* CoreServices.framework */; };
 		93983B2D0DA43C79007F53F3 /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 939837800DA42965007F53F3 /* ShortcutRecorder.framework */; };
 		93983B390DA43C82007F53F3 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 939837800DA42965007F53F3 /* ShortcutRecorder.framework */; };
-		A1125B77104C8AF3005C6F7B /* PTKeyCodeTranslator.h in Headers */ = {isa = PBXBuildFile; fileRef = A1125B75104C8AF3005C6F7B /* PTKeyCodeTranslator.h */; };
 		A1125B79104C8B06005C6F7B /* PTKeyCodeTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = A1125B76104C8AF3005C6F7B /* PTKeyCodeTranslator.m */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,8 @@
 		32CA4F630368D1EE00C91783 /* ShortcutRecorder_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutRecorder_Prefix.pch; sourceTree = "<group>"; };
 		502378B215A4754300F7A1AD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		502378B415A4755000F7A1AD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		504536DF15A47B2A0088AD49 /* NSMenuItem+SRConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMenuItem+SRConfiguration.h"; path = "Framework/Source/NSMenuItem+SRConfiguration.h"; sourceTree = SOURCE_ROOT; };
+		504536E015A47B2B0088AD49 /* NSMenuItem+SRConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMenuItem+SRConfiguration.m"; path = "Framework/Source/NSMenuItem+SRConfiguration.m"; sourceTree = SOURCE_ROOT; };
 		507562DE15A4757200C73134 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		507562E015A4757B00C73134 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		507562E215A4757F00C73134 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
@@ -195,6 +198,8 @@
 				74C3670F0A246B4900B69171 /* SRValidator.m */,
 				74C367100A246B4900B69171 /* SRCommon.h */,
 				74C367110A246B4900B69171 /* SRCommon.m */,
+				504536DF15A47B2A0088AD49 /* NSMenuItem+SRConfiguration.h */,
+				504536E015A47B2B0088AD49 /* NSMenuItem+SRConfiguration.m */,
 			);
 			name = Framework;
 			path = Source;
@@ -339,7 +344,7 @@
 				9398393E0DA4350B007F53F3 /* SRKeyCodeTransformer.h in Headers */,
 				9398393F0DA4350B007F53F3 /* SRValidator.h in Headers */,
 				939839400DA4350B007F53F3 /* SRCommon.h in Headers */,
-				A1125B77104C8AF3005C6F7B /* PTKeyCodeTranslator.h in Headers */,
+				504536E115A47B2B0088AD49 /* NSMenuItem+SRConfiguration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +449,7 @@
 				939837980DA429EC007F53F3 /* SRKeyCodeTransformer.m in Sources */,
 				939837990DA429EC007F53F3 /* SRValidator.m in Sources */,
 				9398379A0DA429EC007F53F3 /* SRCommon.m in Sources */,
+				504536E215A47B2B0088AD49 /* NSMenuItem+SRConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
