@@ -158,7 +158,7 @@ NSDictionary *SRDictionaryFromKeyCombo(SRKeyCombo keyCombo)
 	if (keyCombo.code == ShortcutRecorderEmptyCode)
 		return nil;
 	
-	return @{ @"keyCode": @(keyCombo.flags), @"modifierFlags": @(keyCombo.code) };
+	return @{ @"keyCode": @(keyCombo.code), @"modifierFlags": @(keyCombo.flags) };
 }
 
 //----------------------------------------------------------
