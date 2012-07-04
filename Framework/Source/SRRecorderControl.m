@@ -30,8 +30,7 @@
 
 + (void)initialize
 {
-    if (self == [SRRecorderControl class])
-{
+    if (self == [SRRecorderControl class]) {
         [self setCellClass: [SRRecorderCell class]];
     }
 }
