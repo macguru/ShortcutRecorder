@@ -45,13 +45,12 @@
                 NSString *description = [NSString stringWithFormat: 
                     SRLocalizedString(@"The key combination %@ can't be used!"), 
                     SRStringForCarbonModifierFlagsAndKeyCode(flags, keyCode)];
-                NSString *recoverySuggestion = [NSString stringWithFormat: 
+                NSString *failureReason = [NSString stringWithFormat:
                     SRLocalizedString(@"The key combination \"%@\" can't be used because %@."), 
                     SRReadableStringForCarbonModifierFlagsAndKeyCode(flags, keyCode),
                     (delegateReason && [delegateReason length]) ? delegateReason : @"it's already used"];
                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey: description,
-										  NSLocalizedRecoverySuggestionErrorKey: recoverySuggestion,
-										  NSLocalizedRecoveryOptionsErrorKey: @[@"OK"]};
+										  NSLocalizedFailureReasonErrorKey: failureReason};
                 *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
             }
 			return YES;
@@ -117,12 +116,11 @@
                 NSString *description = [NSString stringWithFormat: 
                     SRLocalizedString(@"The key combination %@ can't be used!"), 
                     SRStringForCarbonModifierFlagsAndKeyCode(flags, keyCode)];
-                NSString *recoverySuggestion = [NSString stringWithFormat: 
+                NSString *failureReason = [NSString stringWithFormat:
                     SRLocalizedString(@"The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)"), 
                     SRReadableStringForCarbonModifierFlagsAndKeyCode(flags, keyCode)];
 				NSDictionary *userInfo = @{NSLocalizedDescriptionKey: description,
-										  NSLocalizedRecoverySuggestionErrorKey: recoverySuggestion,
-										  NSLocalizedRecoveryOptionsErrorKey: @[@"OK"]};
+										  NSLocalizedFailureReasonErrorKey: failureReason};
                 *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
             }
             return YES;
@@ -190,13 +188,12 @@
                     NSString *description = [NSString stringWithFormat: 
                         SRLocalizedString(@"The key combination %@ can't be used!"),
                         SRStringForCarbonModifierFlagsAndKeyCode(flags, keyCode)];
-                    NSString *recoverySuggestion = [NSString stringWithFormat: 
+                    NSString *failureReason = [NSString stringWithFormat: 
                         SRLocalizedString(@"The key combination \"%@\" can't be used because it's already used by the menu item \"%@\"."), 
                         SRReadableStringForCocoaModifierFlagsAndKeyCode(menuItemModifierFlags, keyCode),
                         [menuItem title]];
                     NSDictionary *userInfo = @{NSLocalizedDescriptionKey: description,
-											  NSLocalizedRecoverySuggestionErrorKey: recoverySuggestion,
-											  NSLocalizedRecoveryOptionsErrorKey: @[@"OK"]};
+											  NSLocalizedFailureReasonErrorKey: failureReason};
                     *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
                 }
 				return YES;
