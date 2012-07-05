@@ -12,10 +12,10 @@
 		504536E215A47B2B0088AD49 /* NSMenuItem+SRConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 504536E015A47B2B0088AD49 /* NSMenuItem+SRConfiguration.m */; };
 		504536ED15A486920088AD49 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504536EC15A486920088AD49 /* Cocoa.framework */; };
 		504536EE15A486D10088AD49 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504536EC15A486920088AD49 /* Cocoa.framework */; };
-		50FF9A511521F33C001565E4 /* SRRemoveShortcut.tif in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A481521C1E5001565E4 /* SRRemoveShortcut.tif */; };
-		50FF9A521521F33C001565E4 /* SRRemoveShortcutPressed.tif in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A491521C1E5001565E4 /* SRRemoveShortcutPressed.tif */; };
-		50FF9A531521F33C001565E4 /* SRRemoveShortcutRollover.tif in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A4A1521C1E5001565E4 /* SRRemoveShortcutRollover.tif */; };
-		50FF9A541521F33C001565E4 /* SRSnapback.tiff in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50FF9A4B1521C1E5001565E4 /* SRSnapback.tiff */; };
+		5045370815A58CE90088AD49 /* SRRemoveShortcut.png in Copy Resources */ = {isa = PBXBuildFile; fileRef = 5045370415A58C600088AD49 /* SRRemoveShortcut.png */; };
+		5045370915A58CE90088AD49 /* SRRemoveShortcutPressed.png in Copy Resources */ = {isa = PBXBuildFile; fileRef = 5045370515A58C600088AD49 /* SRRemoveShortcutPressed.png */; };
+		5045370A15A58CE90088AD49 /* SRRemoveShortcutRollover.png in Copy Resources */ = {isa = PBXBuildFile; fileRef = 5045370615A58C600088AD49 /* SRRemoveShortcutRollover.png */; };
+		5045370B15A58CE90088AD49 /* SRSnapback.png in Copy Resources */ = {isa = PBXBuildFile; fileRef = 5045370715A58C600088AD49 /* SRSnapback.png */; };
 		9371C79D15167DE2008B7F36 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9371C79715167DE2008B7F36 /* InfoPlist.strings */; };
 		9371C79E15167DE2008B7F36 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9371C79915167DE2008B7F36 /* Localizable.strings */; };
 		9371C79F15167DE2008B7F36 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9371C79B15167DE2008B7F36 /* MainMenu.xib */; };
@@ -60,11 +60,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				5045370815A58CE90088AD49 /* SRRemoveShortcut.png in Copy Resources */,
+				5045370915A58CE90088AD49 /* SRRemoveShortcutPressed.png in Copy Resources */,
+				5045370A15A58CE90088AD49 /* SRRemoveShortcutRollover.png in Copy Resources */,
+				5045370B15A58CE90088AD49 /* SRSnapback.png in Copy Resources */,
 				5000F14615A475CA005DAB6F /* ShortcutRecorder.strings in Copy Resources */,
-				50FF9A511521F33C001565E4 /* SRRemoveShortcut.tif in Copy Resources */,
-				50FF9A521521F33C001565E4 /* SRRemoveShortcutPressed.tif in Copy Resources */,
-				50FF9A531521F33C001565E4 /* SRRemoveShortcutRollover.tif in Copy Resources */,
-				50FF9A541521F33C001565E4 /* SRSnapback.tiff in Copy Resources */,
 			);
 			name = "Copy Resources";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,15 +108,15 @@
 		504536E015A47B2B0088AD49 /* NSMenuItem+SRConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMenuItem+SRConfiguration.m"; path = "Framework/Source/NSMenuItem+SRConfiguration.m"; sourceTree = SOURCE_ROOT; };
 		504536EC15A486920088AD49 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		504536F515A488D10088AD49 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		5045370415A58C600088AD49 /* SRRemoveShortcut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRRemoveShortcut.png; sourceTree = "<group>"; };
+		5045370515A58C600088AD49 /* SRRemoveShortcutPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRRemoveShortcutPressed.png; sourceTree = "<group>"; };
+		5045370615A58C600088AD49 /* SRRemoveShortcutRollover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRRemoveShortcutRollover.png; sourceTree = "<group>"; };
+		5045370715A58C600088AD49 /* SRSnapback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRSnapback.png; sourceTree = "<group>"; };
 		507562DE15A4757200C73134 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		507562E015A4757B00C73134 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		507562E215A4757F00C73134 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
 		507562E415A4758300C73134 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		507562E615A4758600C73134 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		50FF9A481521C1E5001565E4 /* SRRemoveShortcut.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcut.tif; sourceTree = "<group>"; };
-		50FF9A491521C1E5001565E4 /* SRRemoveShortcutPressed.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcutPressed.tif; sourceTree = "<group>"; };
-		50FF9A4A1521C1E5001565E4 /* SRRemoveShortcutRollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcutRollover.tif; sourceTree = "<group>"; };
-		50FF9A4B1521C1E5001565E4 /* SRSnapback.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRSnapback.tiff; sourceTree = "<group>"; };
 		74C3670C0A246B4900B69171 /* SRKeyCodeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SRKeyCodeTransformer.h; path = Framework/Source/SRKeyCodeTransformer.h; sourceTree = SOURCE_ROOT; };
 		74C3670D0A246B4900B69171 /* SRKeyCodeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SRKeyCodeTransformer.m; path = Framework/Source/SRKeyCodeTransformer.m; sourceTree = SOURCE_ROOT; };
 		74C3670E0A246B4900B69171 /* SRValidator.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SRValidator.h; path = Framework/Source/SRValidator.h; sourceTree = SOURCE_ROOT; };
@@ -315,10 +315,10 @@
 		50FF9A471521C1E4001565E4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				50FF9A481521C1E5001565E4 /* SRRemoveShortcut.tif */,
-				50FF9A491521C1E5001565E4 /* SRRemoveShortcutPressed.tif */,
-				50FF9A4A1521C1E5001565E4 /* SRRemoveShortcutRollover.tif */,
-				50FF9A4B1521C1E5001565E4 /* SRSnapback.tiff */,
+				5045370415A58C600088AD49 /* SRRemoveShortcut.png */,
+				5045370515A58C600088AD49 /* SRRemoveShortcutPressed.png */,
+				5045370615A58C600088AD49 /* SRRemoveShortcutRollover.png */,
+				5045370715A58C600088AD49 /* SRSnapback.png */,
 			);
 			name = Images;
 			path = Framework/Images;

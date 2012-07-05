@@ -142,165 +142,132 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
-	CGFloat radius = 0;
-
-		cellFrame = NSInsetRect(cellFrame,0.5f,0.5f);
-		
-		NSRect whiteRect = cellFrame;
-		NSBezierPath *roundedRect;
-		
-		BOOL isVaguelyRecording = _isRecording;
-		
-		CGFloat alphaRecording = 1.0f; CGFloat alphaView = 1.0f;
-		
-	// Draw white rounded box
-		radius = NSHeight(whiteRect) / 2.0f;
-		roundedRect = [NSBezierPath bezierPathWithRoundedRect:whiteRect xRadius:radius yRadius:radius];
-		[[NSColor whiteColor] set];
-		[[NSGraphicsContext currentContext] saveGraphicsState];
-		[roundedRect fill];
-		[[NSColor windowFrameColor] set];
-		[roundedRect stroke];
-		[roundedRect addClip];
-		
-		if (_isRecording) 
-		{
-			NSRect snapBackRect = [self _snapbackRectForFrame: cellFrame];
-//		NSLog(@"snapbackrect: %@; offset: %@", NSStringFromRect([self _snapbackRectForFrame: cellFrame]), NSStringFromRect(snapBackRect));
-			
-			NSRect correctedSnapBackRect = snapBackRect;
-//		correctedSnapBackRect.origin.y = NSMinY(whiteRect);
-			correctedSnapBackRect.size.height = NSHeight(whiteRect);
-			correctedSnapBackRect.size.width *= 1.3f;
-			correctedSnapBackRect.origin.y -= 5.0f;
-			correctedSnapBackRect.origin.x -= 1.5f;
-			
-			NSBezierPath *snapBackButton = [NSBezierPath bezierPathWithRect:correctedSnapBackRect];
-			[[[[NSColor windowFrameColor] shadowWithLevel:0.2f] colorWithAlphaComponent:alphaRecording] set];
-			[snapBackButton stroke];
-//		NSLog(@"stroked along path of %@", NSStringFromRect(correctedSnapBackRect));
-
-			NSGradient *gradient = nil;
-			if (_mouseDown && _mouseInsideTrackingArea) {
-				gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.60f alpha:alphaRecording]
-														 endingColor:[NSColor colorWithCalibratedWhite:0.75f alpha:alphaRecording]];
-			}
-			else {
-				gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.75f alpha:alphaRecording]
-														 endingColor:[NSColor colorWithCalibratedWhite:0.90f alpha:alphaRecording]];
-			}
-			CGFloat insetAmount = -([snapBackButton lineWidth]/2.0f);
-			[gradient drawInRect:NSInsetRect(correctedSnapBackRect, insetAmount, insetAmount) angle:90.0f];
-
-			/*
-		// Highlight if inside or down
-			 if (mouseInsideTrackingArea)
-			 {
-				 [[[NSColor blackColor] colorWithAlphaComponent: alphaRecording*(mouseDown ? 0.15 : 0.1)] set];
-				 [snapBackButton fill];
-			 }*/
-			
-		// Draw snapback image
-			NSImage *snapBackArrow = [[NSBundle bundleForClass: self.class] imageForResource: @"SRSnapback"];
-			[snapBackArrow dissolveToPoint:correctedSnapBackRect.origin fraction:1.0f*alphaRecording];
-		}
-		
-	// Draw border and remove badge if needed
-		if (![self _isEmpty] && [self isEnabled])
-		{
-			NSString *removeImageName = [NSString stringWithFormat: @"SRRemoveShortcut%@", (_mouseInsideTrackingArea ? (_mouseDown ? @"Pressed" : @"Rollover") :(_mouseDown ? @"Rollover" : @""))];
-			NSImage *removeImage = [[NSBundle bundleForClass: self.class] imageForResource: removeImageName];
-			[removeImage dissolveToPoint:[self _removeButtonRectForFrame: cellFrame].origin fraction:alphaView];
-		}
-		
-		
-		
-	// Draw text
-		NSMutableParagraphStyle *mpstyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-		[mpstyle setLineBreakMode: NSLineBreakByTruncatingTail];
-		[mpstyle setAlignment: NSCenterTextAlignment];
-		
-		CGFloat alphaCombo = alphaView;
-		CGFloat alphaRecordingText = alphaRecording;
-		
-		NSString *displayString;
-		
-		if (_isRecording)
-		{
-	// Only the SRKeyCombo should be black and in a bigger font size
-			BOOL recordingOrEmpty = (isVaguelyRecording || [self _isEmpty]);
-			NSDictionary *attributes = @{NSParagraphStyleAttributeName: mpstyle,
-				NSFontAttributeName: [NSFont systemFontOfSize:(recordingOrEmpty ? [NSFont labelFontSize] : [NSFont smallSystemFontSize])],
-				NSForegroundColorAttributeName: [(recordingOrEmpty ? [NSColor disabledControlTextColor] : [NSColor blackColor]) colorWithAlphaComponent:alphaRecordingText]};
-		// Recording, but no modifier keys down
-			if (![self _validModifierFlags: _recordingFlags])
-			{
-				if (_mouseInsideTrackingArea)
-				{
-				// Mouse over snapback
-					displayString = SRLocalizedString(@"Use old shortcut");
-				}
-				else
-				{
-				// Mouse elsewhere
-					displayString = SRLocalizedString(@"Type shortcut");
-				}
-			}
-			else
-			{
-			// Display currently pressed modifier keys
-				displayString = SRStringForCocoaModifierFlags(_recordingFlags);
-				
-			// Fall back on 'Type shortcut' if we don't have modifier flags to display; this will happen for the fn key depressed
-				if (![displayString length])
-				{
-					displayString = SRLocalizedString(@"Type shortcut");
-				}
-			}
-			
-			NSRect textRect = cellFrame;
-			textRect.origin.y -= 3.0f;
-			
-			[displayString drawInRect:textRect withAttributes:attributes];
-		}
-		
-		else
-		{
-			// Only the SRKeyCombo should be black and in a bigger font size
-			NSDictionary *attributes = @{NSParagraphStyleAttributeName: mpstyle,
-				NSFontAttributeName: [NSFont systemFontOfSize:([self _isEmpty] ? [NSFont labelFontSize] : [NSFont smallSystemFontSize])],
-				NSForegroundColorAttributeName: [([self _isEmpty] ? [NSColor disabledControlTextColor] : [NSColor blackColor]) colorWithAlphaComponent:alphaCombo]};
-			
-			// Not recording...
-			if ([self _isEmpty])
-			{
-				displayString = SRLocalizedString(@"Click to record shortcut");
-			}
-			else
-			{
-				displayString = [self keyComboString];
-			}
-			
-			NSRect textRect = cellFrame;
-			textRect.origin.y = NSMinY(textRect)-3.0f;
-			
-			[displayString drawInRect:textRect withAttributes:attributes];
-		}
-		
-		[[NSGraphicsContext currentContext] restoreGraphicsState];
-		
-    // draw a focus ring...?
-		
-		if ([self showsFirstResponder])
-		{
-			[NSGraphicsContext saveGraphicsState];
-			NSSetFocusRingStyle(NSFocusRingOnly);
-			radius = NSHeight(cellFrame) / 2.0f;
-			[[NSBezierPath bezierPathWithRoundedRect:cellFrame xRadius:radius yRadius:radius] fill];
-			[NSGraphicsContext restoreGraphicsState];
-		}
-		
+	NSRect innerFrame = NSInsetRect(cellFrame, 0.5f, 0.5f);
+	NSRect textFrame = NSInsetRect(cellFrame, 3, 1);
 	
+	// Draw Background
+	CGFloat radius = NSHeight(innerFrame) / 2;
+	NSBezierPath *backgroundPath = [NSBezierPath bezierPathWithRoundedRect:innerFrame xRadius:radius yRadius:radius];
+	
+	[[NSColor colorWithCalibratedWhite:0.1 alpha:1] set];
+	[[NSGraphicsContext currentContext] saveGraphicsState];
+	[backgroundPath fill];
+	[backgroundPath addClip];
+	
+	
+	// Draw snapback button
+	if (_isRecording) {
+		NSRect snapbackRect = [self _snapbackRectForFrame: cellFrame];
+		
+		// Snapback fill
+		NSGradient *gradient = nil;
+		if (_mouseDown && _mouseInsideTrackingArea) {
+			gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.2f alpha:1]
+													 endingColor:[NSColor colorWithCalibratedWhite:0.1f alpha:1]];
+		}
+		else {
+			gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.1f alpha:1]
+													 endingColor:[NSColor colorWithCalibratedWhite:0.2f alpha:1]];
+		}
+		
+		[gradient drawInRect:NSInsetRect(snapbackRect, 0.5, 0.5) angle:90];
+		
+		// Draw snapback image
+		NSImage *snapbackArrow = [[NSBundle bundleForClass: self.class] imageForResource: @"SRSnapback"];
+		
+		NSPoint point;
+		point.x = NSMinX(snapbackRect) + round((NSWidth(snapbackRect) - snapbackArrow.size.width) / 2);
+		point.y = NSMinY(snapbackRect) + round((NSHeight(snapbackRect) - snapbackArrow.size.height) / 2) + 1;
+		[snapbackArrow compositeToPoint:point operation:NSCompositeSourceOver];
+		
+		// Snapback stroke
+		NSBezierPath *snapbackButton = [NSBezierPath bezierPathWithRect:NSInsetRect(snapbackRect, 0.5f, 0.5f)];
+		[[NSColor colorWithCalibratedWhite:0 alpha:1] set];
+		[snapbackButton stroke];
+		
+		// Inset text rect
+		textFrame.size.width = NSMinX(snapbackRect) - 2 - NSMinX(textFrame);
+	}
+	
+	// Draw erase button
+	else if (![self _isEmpty] && [self isEnabled]) {
+		NSString *removeImageName = [NSString stringWithFormat: @"SRRemoveShortcut%@", (_mouseInsideTrackingArea ? (_mouseDown ? @"Pressed" : @"Rollover") : (_mouseDown ? @"Rollover" : @""))];
+		
+		// Draw remove image
+		NSImage *removeImage = [[NSBundle bundleForClass: self.class] imageForResource: removeImageName];
+		NSRect removeRect = [self _removeButtonRectForFrame: cellFrame];
+		
+		NSPoint point;
+		point.x = NSMinX(removeRect);
+		point.y = NSMinY(removeRect) + (NSHeight(removeRect) - removeImage.size.height) / 2;
+		[removeImage compositeToPoint:point operation:NSCompositeSourceOver];
+		
+		// Inset text rect
+		textFrame.size.width = NSMinX(removeRect) - 2 - NSMinX(textFrame);
+	}
+	
+	
+	// Display string depending on state
+	NSString *displayString;
+	if (_isRecording) {
+		// Recording, but no modifier keys down
+		if (![self _validModifierFlags: _recordingFlags]) {
+			displayString = SRLocalizedString((_mouseInsideTrackingArea) ? @"Use old shortcut" : @"Type shortcut");
+		} else {
+			// Display currently pressed modifier keys
+			displayString = SRStringForCocoaModifierFlags(_recordingFlags);
+			
+			// Fall back on 'Type shortcut' if we don't have modifier flags to display; this will happen for the fn key depressed
+			if (![displayString length])
+				displayString = SRLocalizedString(@"Type shortcut");
+		}
+	} else {
+		if ([self _isEmpty])
+			displayString = SRLocalizedString(@"Click to record shortcut");
+		else
+			displayString = [self keyComboString];
+	}
+	
+	// Text attributes
+	BOOL recordingOrEmpty = (_isRecording || [self _isEmpty]);
+	
+	NSMutableDictionary *attributes = [NSMutableDictionary new];
+	attributes[NSFontAttributeName] = [NSFont systemFontOfSize:(recordingOrEmpty
+																? [NSFont labelFontSize]
+																: [NSFont systemFontSize])];
+	attributes[NSForegroundColorAttributeName] = (recordingOrEmpty
+												  ? [NSColor colorWithCalibratedWhite:0.5 alpha:1]
+												  : [NSColor colorWithCalibratedRed:0.627 green:0.784 blue:0.843 alpha:1.000]);
+	
+	NSMutableParagraphStyle *pStyle = [NSMutableParagraphStyle new];
+	pStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+	attributes[NSParagraphStyleAttributeName] = pStyle;
+	
+	// Draw text
+	NSRect usedTextFrame = [displayString boundingRectWithSize:textFrame.size options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin attributes:attributes];
+	
+	usedTextFrame.origin.x = MIN(NSMidX(cellFrame)/2 + NSMidX(textFrame)/2 - NSWidth(usedTextFrame)/2,
+								 NSMaxX(textFrame) - NSWidth(usedTextFrame));
+	usedTextFrame.origin.y += (NSHeight(textFrame) - NSHeight(usedTextFrame)) / 2 + NSMinY(textFrame) + (recordingOrEmpty ? 0 : 1);
+	
+	[displayString drawWithRect:usedTextFrame options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin attributes:attributes];
+	
+	
+	// Remove clipping
+	[[NSGraphicsContext currentContext] restoreGraphicsState];
+	
+	// Draw outline
+	[[NSColor colorWithCalibratedWhite:0 alpha:1] set];
+	[backgroundPath stroke];
+	
+	
+    // draw a focus ring...?
+	if ([self showsFirstResponder]) {
+		[NSGraphicsContext saveGraphicsState];
+		NSSetFocusRingStyle(NSFocusRingOnly);
+//		[backgroundPath fill];
+		[NSGraphicsContext restoreGraphicsState];
+	}
 }
 
 #pragma mark *** Mouse Tracking ***
@@ -727,22 +694,26 @@
 {	
 	if ([self _isEmpty] || ![self isEnabled]) return NSZeroRect;
 	
-	NSRect removeButtonRect;
 	NSImage *removeImage = [[NSBundle bundleForClass: self.class] imageForResource: @"SRRemoveShortcut"];
 	
-	removeButtonRect.origin = NSMakePoint(NSMaxX(cellFrame) - [removeImage size].width - 4, (NSMaxY(cellFrame) - [removeImage size].height)/2);
-	removeButtonRect.size = [removeImage size];
-
+	NSRect removeButtonRect;
+	removeButtonRect.size.width = round(removeImage.size.width * 1.3);
+	removeButtonRect.size.height = NSHeight(cellFrame);
+	removeButtonRect.origin.x = NSWidth(cellFrame) - removeButtonRect.size.width;
+	removeButtonRect.origin.y = 0;
+	
 	return removeButtonRect;
 }
 
 - (NSRect)_snapbackRectForFrame:(NSRect)cellFrame
 {
-	NSRect snapbackRect;
 	NSImage *snapbackImage = [[NSBundle bundleForClass: self.class] imageForResource: @"SRSnapback"];
 	
-	snapbackRect.origin = NSMakePoint(NSMaxX(cellFrame) - [snapbackImage size].width - 2, (NSMaxY(cellFrame) - [snapbackImage size].height)/2 + 1);
-	snapbackRect.size = [snapbackImage size];
+	NSRect snapbackRect;
+	snapbackRect.size.width = round(snapbackImage.size.width * 1.6);
+	snapbackRect.size.height = NSHeight(cellFrame);
+	snapbackRect.origin.x = NSWidth(cellFrame) - snapbackRect.size.width;
+	snapbackRect.origin.y = 0;
 
 	return snapbackRect;
 }
