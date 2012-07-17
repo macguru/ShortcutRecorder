@@ -12,7 +12,7 @@
 
 - (void)configureWithKeyCombo:(SRKeyCombo)keyCombo
 {
-	self.keyEquivalent = [SRCharacterForKeyCodeAndCocoaFlags(keyCombo.code, keyCombo.flags) lowercaseString];
+	self.keyEquivalent = [SRStringForKeyCode(keyCombo.code) lowercaseString] ?: @"";
 	self.keyEquivalentModifierMask = keyCombo.flags;
 }
 
