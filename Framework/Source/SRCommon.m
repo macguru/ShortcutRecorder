@@ -190,10 +190,9 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(NSInteger keyCode, NSUInteger cocoa
 	
 	UInt32              deadKeyState;
     OSStatus err = noErr;
-    CFLocaleRef locale = CFLocaleCopyCurrent();
 	
 	TISInputSourceRef tisSource = TISCopyCurrentKeyboardInputSource();
-    if(!tisSource)
+    if (!tisSource)
 		return FailWithNaiveString;
 	
 	CFDataRef layoutData = (CFDataRef)TISGetInputSourceProperty(tisSource, kTISPropertyUnicodeKeyLayoutData);
@@ -215,12 +214,13 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(NSInteger keyCode, NSUInteger cocoa
 
 	CFStringRef temp = CFStringCreateWithCharacters(kCFAllocatorDefault, unicodeString, 1);
 	CFMutableStringRef mutableTemp = CFStringCreateMutableCopy(kCFAllocatorDefault, 0, temp);
-
+	
+    CFLocaleRef locale = CFLocaleCopyCurrent();
 	CFStringCapitalize(mutableTemp, locale);
+	CFRelease(locale);
 
 	NSString *resultString = [NSString stringWithString:(__bridge_transfer NSString *)mutableTemp];
 
-	CFRelease(locale);
 	if (temp) CFRelease(temp);
 
 	return resultString;
