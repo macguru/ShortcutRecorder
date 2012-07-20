@@ -208,14 +208,14 @@
 	[self.cell setRequiredModifierFlags: flags];
 }
 
-- (SRKeyCombo *)keyCombo
+- (SRKeyCombo *)shortcut
 {
-	return [self.cell keyCombo];
+	return [self.cell shortcut];
 }
 
-- (void)setKeyCombo:(SRKeyCombo *)aKeyCombo
+- (void)setShortcut:(SRKeyCombo *)aKeyCombo
 {
-	[self.cell setKeyCombo: aKeyCombo];
+	[self.cell setShortcut: aKeyCombo];
 }
 
 
@@ -223,12 +223,12 @@
 
 - (NSDictionary *)objectValue
 {
-    return self.keyCombo.dictionaryRepresentation;
+    return self.shortcut.dictionaryRepresentation;
 }
 
 - (void)setObjectValue:(NSDictionary *)shortcut
 {
-	self.keyCombo = [SRKeyCombo keyComboFromDictionary: shortcut];
+	self.shortcut = [SRKeyCombo keyComboFromDictionary: shortcut];
 }
 
 - (Class)valueClassForBinding:(NSString *)binding

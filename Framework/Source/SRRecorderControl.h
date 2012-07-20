@@ -18,8 +18,8 @@
 
 @interface SRRecorderControl : NSControl
 
-@property(nonatomic, strong) SRKeyCombo *keyCombo;
-@property(nonatomic, copy) NSDictionary *objectValue; // Exposes binding @"value" for a dictionary rep of the keycombo
+@property(nonatomic, strong) SRKeyCombo *shortcut;
+@property(nonatomic, copy) NSDictionary *objectValue; // Exposes binding @"value" for a dictionary rep of the shortcut
 
 @property(nonatomic) NSUInteger allowedModifierFlags;
 @property(nonatomic) NSUInteger requiredModifierFlags;

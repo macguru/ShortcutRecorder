@@ -19,7 +19,7 @@
 
 @interface SRRecorderCell : NSActionCell <NSCoding>
 
-@property(nonatomic) SRKeyCombo *keyCombo;
+@property(nonatomic) SRKeyCombo *shortcut;
 
 @property(nonatomic) NSUInteger allowedModifierFlags;
 @property(nonatomic) NSUInteger requiredModifierFlags;

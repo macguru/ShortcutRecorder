@@ -42,7 +42,7 @@
 	return [NSString stringWithFormat: @"<%@: %@, %@>", NSStringFromClass([self class]), [self identifier], [self keyCombo]];
 }
 
-- (void)setKeyCombo:(PTKeyCombo *)combo
+- (void)setShortcut:(PTKeyCombo *)combo
 {
 	keyCombo = (combo) ?: [PTKeyCombo clearKeyCombo];
 }
