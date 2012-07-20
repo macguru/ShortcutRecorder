@@ -13,12 +13,13 @@
 //		Max Seelemann
 
 #import <ShortcutRecorder/SRCommon.h>
+#import <ShortcutRecorder/SRKeyCombo.h>
 @protocol SRRecorderCellDelegate;
 
 
 @interface SRRecorderCell : NSActionCell <NSCoding>
 
-@property(nonatomic) SRKeyCombo keyCombo;
+@property(nonatomic) SRKeyCombo *keyCombo;
 
 @property(nonatomic) NSUInteger allowedModifierFlags;
 @property(nonatomic) NSUInteger requiredModifierFlags;
@@ -36,13 +37,7 @@
 - (BOOL)performKeyEquivalent:(NSEvent *)theEvent;
 - (void)flagsChanged:(NSEvent *)theEvent;
 
-
-// Other
 @property(nonatomic, weak) id <SRRecorderCellDelegate> delegate;
-
-- (NSString *)characters;
-- (NSString *)charactersIgnoringModifiers;
-- (NSString *)keyComboString;
 
 @end
 
@@ -50,6 +45,6 @@
 
 @optional
 - (BOOL)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
-- (void)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell keyComboDidChange:(SRKeyCombo)newCombo;
+- (void)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell keyComboDidChange:(SRKeyCombo *)newCombo;
 
 @end

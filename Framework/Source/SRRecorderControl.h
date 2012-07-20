@@ -12,18 +12,14 @@
 //      Jamie Kirkpatrick
 
 #import <ShortcutRecorder/SRCommon.h>
+#import <ShortcutRecorder/SRKeyCombo.h>
 @protocol SRRecorderDelegate;
 
 
 @interface SRRecorderControl : NSControl
 
-@property(nonatomic) SRKeyCombo keyCombo;
+@property(nonatomic, strong) SRKeyCombo *keyCombo;
 @property(nonatomic, copy) NSDictionary *objectValue; // Exposes binding @"value" for a dictionary rep of the keycombo
-
-- (NSString *)characters;
-- (NSString *)charactersIgnoringModifiers;
-- (NSString *)keyComboString;
-
 
 @property(nonatomic) NSUInteger allowedModifierFlags;
 @property(nonatomic) NSUInteger requiredModifierFlags;
@@ -41,6 +37,6 @@
 @optional
 
 - (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
-- (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(SRKeyCombo)newKeyCombo;
+- (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(SRKeyCombo *)newKeyCombo;
 
 @end

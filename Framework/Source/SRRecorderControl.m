@@ -126,16 +126,6 @@
 	[super setFrame: correctedFrarme];
 }
 
-- (NSString *)characters
-{
-	return [self.cell characters];
-}
-
-- (NSString *)charactersIgnoringModifiers
-{
-	return [self.cell charactersIgnoringModifiers];	
-}
-
 
 #pragma mark - Key Interception
 
@@ -218,12 +208,12 @@
 	[self.cell setRequiredModifierFlags: flags];
 }
 
-- (SRKeyCombo)keyCombo
+- (SRKeyCombo *)keyCombo
 {
 	return [self.cell keyCombo];
 }
 
-- (void)setKeyCombo:(SRKeyCombo)aKeyCombo
+- (void)setKeyCombo:(SRKeyCombo *)aKeyCombo
 {
 	[self.cell setKeyCombo: aKeyCombo];
 }
@@ -233,12 +223,12 @@
 
 - (NSDictionary *)objectValue
 {
-    return SRDictionaryFromKeyCombo(self.keyCombo);
+    return self.keyCombo.dictionaryRepresentation;
 }
 
 - (void)setObjectValue:(NSDictionary *)shortcut
 {
-	self.keyCombo = SRKeyComboFromDictionary(shortcut);
+	self.keyCombo = [SRKeyCombo keyComboFromDictionary: shortcut];
 }
 
 - (Class)valueClassForBinding:(NSString *)binding
@@ -247,11 +237,6 @@
 		return [NSDictionary class];
 
 	return [super valueClassForBinding:binding];
-}
-
-- (NSString *)keyComboString
-{
-	return [self.cell keyComboString];
 }
 
 #pragma mark - Delegate
@@ -270,7 +255,7 @@
 
 #define NilOrNull(o) ((o) == nil || (id)(o) == [NSNull null])
 
-- (void)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell keyComboDidChange:(SRKeyCombo)newKeyCombo
+- (void)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell keyComboDidChange:(SRKeyCombo *)newKeyCombo
 {
 	if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorder:keyComboDidChange:)])
 		[delegate shortcutRecorder:self keyComboDidChange:newKeyCombo];

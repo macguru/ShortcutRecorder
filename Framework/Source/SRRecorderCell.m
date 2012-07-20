@@ -79,8 +79,9 @@
 		[self _privateInit];
 		NSAssert([aDecoder allowsKeyedCoding], @"Keyed Coding required!");
 		
-		keyCombo.code = [[aDecoder decodeObjectForKey: @"keyComboCode"] shortValue];
-		keyCombo.flags = [[aDecoder decodeObjectForKey: @"keyComboFlags"] unsignedIntegerValue];
+		keyCombo = [SRKeyCombo keyComboWithKeyCode:[[aDecoder decodeObjectForKey: @"keyComboCode"] shortValue]
+									 keyEquivalent:nil
+								  andModifierFlags:[[aDecoder decodeObjectForKey: @"keyComboFlags"] unsignedIntegerValue]];
 		
 		allowedModifierFlags = [[aDecoder decodeObjectForKey: @"allowedModifierFlags"] unsignedIntegerValue];
 		allowedModifierFlags |= NSFunctionKeyMask;
@@ -100,8 +101,8 @@
 	
 	NSAssert([aCoder allowsKeyedCoding], @"Keyed coder required");
 	
-	[aCoder encodeObject:[NSNumber numberWithShort: keyCombo.code] forKey:@"keyComboCode"];
-	[aCoder encodeObject:@(keyCombo.flags) forKey:@"keyComboFlags"];
+	[aCoder encodeObject:[NSNumber numberWithShort: keyCombo.keyCode] forKey:@"keyComboCode"];
+	[aCoder encodeObject:@(keyCombo.modifierFlags) forKey:@"keyComboFlags"];
 	
 	[aCoder encodeObject:@(allowedModifierFlags) forKey:@"allowedModifierFlags"];
 	[aCoder encodeObject:@(requiredModifierFlags) forKey:@"requiredModifierFlags"];
@@ -225,7 +226,7 @@
 		if ([self _isEmpty])
 			displayString = SRLocalizedString(@"Click to record shortcut");
 		else
-			displayString = [self keyComboString];
+			displayString = keyCombo.string;
 	}
 	
 	// Text attributes
@@ -371,7 +372,7 @@
 					}
 					else {
 						// Mouse was over the remove image, reset all
-						[self setKeyCombo: SRMakeKeyCombo(ShortcutRecorderEmptyCode, ShortcutRecorderEmptyFlags)];
+						[self setKeyCombo: nil];
 					}
 				}
 				else if ([controlView mouse:mouseLocation inRect:leftRect] && !_isRecording) {
@@ -480,8 +481,7 @@
 						return YES;
 					} else {
 					// All ok, set new combination
-						keyCombo.flags = flags;
-						keyCombo.code = [theEvent keyCode];
+						keyCombo = [SRKeyCombo keyComboWithKeyCode:theEvent.keyCode keyEquivalent:theEvent.characters.lowercaseString andModifierFlags:flags];
 						
 					// Notify delegate
 						if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorderCell:keyComboDidChange:)])
@@ -539,11 +539,13 @@
 	}
 	else
 	{
-		NSUInteger originalFlags = keyCombo.flags;
-		keyCombo.flags = [self _filteredCocoaFlags: keyCombo.flags];
+		SRKeyCombo *fixedCombo = [SRKeyCombo keyComboWithKeyCode:keyCombo.keyCode
+												   keyEquivalent:keyCombo.keyEquivalent
+												andModifierFlags:[self _filteredCocoaFlags: keyCombo.modifierFlags]];
 		
-		if (keyCombo.flags != originalFlags && keyCombo.code > ShortcutRecorderEmptyCode)
-		{
+		if (![fixedCombo isEqual: keyCombo]) {
+			keyCombo = fixedCombo;
+			
 			// Notify delegate if keyCombo changed
 			if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorderCell:keyComboDidChange:)])
 				[delegate shortcutRecorderCell:self keyComboDidChange:keyCombo];
@@ -578,11 +580,13 @@
 	}
 	else
 	{
-		NSUInteger originalFlags = keyCombo.flags;
-		keyCombo.flags = [self _filteredCocoaFlags: keyCombo.flags];
+		SRKeyCombo *fixedCombo = [SRKeyCombo keyComboWithKeyCode:keyCombo.keyCode
+												   keyEquivalent:keyCombo.keyEquivalent
+												andModifierFlags:[self _filteredCocoaFlags: keyCombo.modifierFlags]];
 		
-		if (keyCombo.flags != originalFlags && keyCombo.code > ShortcutRecorderEmptyCode)
-		{
+		if (![fixedCombo isEqual: keyCombo]) {
+			keyCombo = fixedCombo;
+			
 			// Notify delegate if keyCombo changed
 			if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorderCell:keyComboDidChange:)])
 				[delegate shortcutRecorderCell:self keyComboDidChange:keyCombo];
@@ -592,37 +596,17 @@
 	[self.controlView setNeedsDisplay: YES];
 }
 
-- (void)setKeyCombo:(SRKeyCombo)aKeyCombo
+- (void)setKeyCombo:(SRKeyCombo *)aKeyCombo
 {
-	keyCombo = aKeyCombo;
-	keyCombo.flags = [self _filteredCocoaFlags: aKeyCombo.flags];
-
+	keyCombo = [SRKeyCombo keyComboWithKeyCode:aKeyCombo.keyCode
+								 keyEquivalent:aKeyCombo.keyEquivalent
+							  andModifierFlags:[self _filteredCocoaFlags: aKeyCombo.modifierFlags]];
+	
 	// Notify delegate
 	if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorderCell:keyComboDidChange:)])
 		[delegate shortcutRecorderCell:self keyComboDidChange:keyCombo];
 	
 	[self.controlView setNeedsDisplay: YES];
-}
-
-#pragma mark -
-
-- (NSString *)keyComboString
-{
-	if ([self _isEmpty]) return nil;
-	
-	return [NSString stringWithFormat: @"%@%@",
-        SRStringForCocoaModifierFlags(keyCombo.flags),
-        SRStringForKeyCode(keyCombo.code)];
-}
-
-- (NSString *)characters
-{
-	return SRStringForKeyCode(keyCombo.code);
-}
-
-- (NSString *)charactersIgnoringModifiers
-{
-	return SRCharacterForKeyCodeAndCocoaFlags(keyCombo.code, keyCombo.flags);
 }
 
 
@@ -639,8 +623,7 @@
 	_recordingFlags = ShortcutRecorderEmptyFlags;
 	
 	// Create clean SRKeyCombo
-	keyCombo.flags = ShortcutRecorderEmptyFlags;
-	keyCombo.code = ShortcutRecorderEmptyCode;
+	keyCombo = nil;
 		
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
 	[notificationCenter addObserver:self selector:@selector(_createGradient) name:NSSystemColorsDidChangeNotification object:nil]; // recreate gradient if needed
@@ -752,7 +735,7 @@
 
 - (BOOL)_isEmpty
 {
-	return (![self _validModifierFlags: keyCombo.flags] || !SRStringForKeyCode(keyCombo.code));
+	return !keyCombo;
 }
 
 #pragma mark - Delegate forward

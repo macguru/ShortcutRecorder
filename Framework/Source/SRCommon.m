@@ -149,30 +149,6 @@ NSUInteger SRCocoaToCarbonFlags(NSUInteger cocoaFlags)
 	return carbonFlags;
 }
 
-
-//---------------------------------------------------------- 
-// SRDictionaryFromKeyCombo()
-//----------------------------------------------------------
-NSDictionary *SRDictionaryFromKeyCombo(SRKeyCombo keyCombo)
-{
-	if (keyCombo.code == ShortcutRecorderEmptyCode)
-		return nil;
-	
-	return @{ @"keyCode": @(keyCombo.code), @"modifierFlags": @(keyCombo.flags) };
-}
-
-//----------------------------------------------------------
-// SRKeyComboFromDictionary()
-//----------------------------------------------------------
-SRKeyCombo SRKeyComboFromDictionary(NSDictionary *dict)
-{
-	if (!dict)
-		return SREmptyKeyCombo;
-	
-	return SRMakeKeyCombo([dict[@"keyCode"] integerValue], [dict[@"modifierFlags"] unsignedIntegerValue]);
-}
-
-
 //----------------------------------------------------------
 // SRCharacterForKeyCodeAndCarbonFlags()
 //----------------------------------------------------------

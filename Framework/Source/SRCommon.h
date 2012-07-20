@@ -15,14 +15,6 @@
 #import <Carbon/Carbon.h>
 #import <CoreServices/CoreServices.h>
 
-#pragma mark - SRKeyCombo typedef
-
-typedef struct {
-	NSUInteger flags;	// SRKeyComboNoFlags for no flags
-	NSInteger code;		// SRKeyComboNoCode for no code
-} SRKeyCombo;
-
-
 #pragma mark - Enums
 
 // Unicode values of some keyboard glyphs
@@ -100,8 +92,6 @@ enum {
 #define SRChar(x) [NSString stringWithCharacters:(const unichar[]){x} length:1]
 
 // Some default values
-#define SREmptyKeyCombo ((SRKeyCombo){ShortcutRecorderEmptyFlags, ShortcutRecorderEmptyCode})
-
 #define ShortcutRecorderEmptyFlags 0
 #define ShortcutRecorderAllFlags (ShortcutRecorderEmptyFlags | (NSCommandKeyMask | NSAlternateKeyMask | NSControlKeyMask | NSShiftKeyMask | NSFunctionKeyMask))
 #define ShortcutRecorderEmptyCode -1
@@ -135,21 +125,7 @@ NSUInteger SRCarbonToCocoaFlags(NSUInteger carbonFlags);
 NSUInteger SRCocoaToCarbonFlags(NSUInteger cocoaFlags);
 
 
-#pragma mark - Serializing key combos
-
-NSDictionary *SRDictionaryFromKeyCombo(SRKeyCombo keyCombo);
-SRKeyCombo SRKeyComboFromDictionary(NSDictionary *dict);
-
-
 #pragma mark - Inlines
-
-FOUNDATION_STATIC_INLINE SRKeyCombo SRMakeKeyCombo(NSInteger code, NSUInteger flags) {
-	return (SRKeyCombo){flags, code};
-}
-
-FOUNDATION_STATIC_INLINE BOOL SREqualKeyCombos(SRKeyCombo combo1, SRKeyCombo combo2) {
-	return (combo1.code == ShortcutRecorderEmptyCode && combo2.code == ShortcutRecorderEmptyCode) || (combo1.code == combo2.code && combo1.flags == combo2.flags);
-}
 
 FOUNDATION_STATIC_INLINE BOOL SRIsSpecialKey(NSInteger keyCode) {
 	return (keyCode == kSRKeysF1 || keyCode == kSRKeysF2 || keyCode == kSRKeysF3 || keyCode == kSRKeysF4 || keyCode == kSRKeysF5 || keyCode == kSRKeysF6 || keyCode == kSRKeysF7 || keyCode == kSRKeysF8 || keyCode == kSRKeysF9 || keyCode == kSRKeysF10 || keyCode == kSRKeysF11 || keyCode == kSRKeysF12 || keyCode == kSRKeysF13 || keyCode == kSRKeysF14 || keyCode == kSRKeysF15 || keyCode == kSRKeysF16 || keyCode == kSRKeysSpace || keyCode == kSRKeysDeleteLeft || keyCode == kSRKeysDeleteRight || keyCode == kSRKeysPadClear || keyCode == kSRKeysLeftArrow || keyCode == kSRKeysRightArrow || keyCode == kSRKeysUpArrow || keyCode == kSRKeysDownArrow || keyCode == kSRKeysSoutheastArrow || keyCode == kSRKeysNorthwestArrow || keyCode == kSRKeysEscape || keyCode == kSRKeysPageDown || keyCode == kSRKeysPageUp || keyCode == kSRKeysReturnR2L || keyCode == kSRKeysReturn || keyCode == kSRKeysTabRight || keyCode == kSRKeysHelp);
