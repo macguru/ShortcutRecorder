@@ -178,7 +178,7 @@
 		NSPoint point;
 		point.x = NSMinX(snapbackRect) + round((NSWidth(snapbackRect) - snapbackArrow.size.width) / 2);
 		point.y = NSMinY(snapbackRect) + round((NSHeight(snapbackRect) - snapbackArrow.size.height) / 2) + 1;
-		[snapbackArrow compositeToPoint:point operation:NSCompositeSourceOver];
+		[snapbackArrow drawAtPoint:point fromRect:NSMakeRect(0, 0, snapbackArrow.size.width, snapbackArrow.size.height) operation:NSCompositeSourceOver fraction:1.0];
 		
 		// Snapback stroke
 		NSBezierPath *snapbackButton = [NSBezierPath bezierPathWithRect:NSInsetRect(snapbackRect, 0.5f, 0.5f)];
@@ -200,7 +200,7 @@
 		NSPoint point;
 		point.x = NSMinX(removeRect);
 		point.y = NSMinY(removeRect) + (NSHeight(removeRect) - removeImage.size.height) / 2;
-		[removeImage compositeToPoint:point operation:NSCompositeSourceOver];
+		[removeImage drawAtPoint:point fromRect:NSMakeRect(0, 0, removeImage.size.width, removeImage.size.height) operation:NSCompositeSourceOver fraction:1.0];
 		
 		// Inset text rect
 		textFrame.size.width = NSMinX(removeRect) - 2 - NSMinX(textFrame);
