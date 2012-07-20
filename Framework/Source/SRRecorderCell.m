@@ -481,7 +481,11 @@
 						return YES;
 					} else {
 					// All ok, set new combination
-						keyCombo = [SRKeyCombo keyComboWithKeyCode:theEvent.keyCode keyEquivalent:theEvent.characters.lowercaseString andModifierFlags:flags];
+						NSString *keyEquivalent = theEvent.charactersIgnoringModifiers.lowercaseString;
+						if (![keyEquivalent rangeOfCharacterFromSet: NSCharacterSet.alphanumericCharacterSet].length)
+							keyEquivalent = nil;
+						
+						keyCombo = [SRKeyCombo keyComboWithKeyCode:theEvent.keyCode keyEquivalent:keyEquivalent andModifierFlags:flags];
 						
 					// Notify delegate
 						if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorderCell:keyComboDidChange:)])

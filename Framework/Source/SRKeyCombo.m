@@ -52,7 +52,7 @@
 {
 	return [NSString stringWithFormat: @"%@%@",
 			SRStringForCocoaModifierFlags(self.modifierFlags),
-			self.characters];
+			self.characters.uppercaseString];
 }
 
 - (NSString *)characters
