@@ -543,11 +543,11 @@
 	}
 	else
 	{
-		SRKeyCombo *fixedCombo = [SRKeyCombo keyComboWithKeyCode:shortcut.keyCode
-												   keyEquivalent:shortcut.keyEquivalent
-												andModifierFlags:[self _filteredCocoaFlags: shortcut.modifierFlags]];
+		SRKeyCombo *fixedCombo = shortcut ? [SRKeyCombo keyComboWithKeyCode:shortcut.keyCode
+															  keyEquivalent:shortcut.keyEquivalent
+														   andModifierFlags:[self _filteredCocoaFlags: shortcut.modifierFlags]] : nil;
 		
-		if (![fixedCombo isEqual: shortcut]) {
+		if (fixedCombo && ![fixedCombo isEqual: shortcut]) {
 			shortcut = fixedCombo;
 			
 			// Notify delegate if shortcut changed
@@ -584,11 +584,11 @@
 	}
 	else
 	{
-		SRKeyCombo *fixedCombo = [SRKeyCombo keyComboWithKeyCode:shortcut.keyCode
-												   keyEquivalent:shortcut.keyEquivalent
-												andModifierFlags:[self _filteredCocoaFlags: shortcut.modifierFlags]];
+		SRKeyCombo *fixedCombo = shortcut ? [SRKeyCombo keyComboWithKeyCode:shortcut.keyCode
+															  keyEquivalent:shortcut.keyEquivalent
+														   andModifierFlags:[self _filteredCocoaFlags: shortcut.modifierFlags]] : nil;
 		
-		if (![fixedCombo isEqual: shortcut]) {
+		if (fixedCombo && ![fixedCombo isEqual: shortcut]) {
 			shortcut = fixedCombo;
 			
 			// Notify delegate if shortcut changed
@@ -602,9 +602,9 @@
 
 - (void)setShortcut:(SRKeyCombo *)aKeyCombo
 {
-	shortcut = [SRKeyCombo keyComboWithKeyCode:aKeyCombo.keyCode
-								 keyEquivalent:aKeyCombo.keyEquivalent
-							  andModifierFlags:[self _filteredCocoaFlags: aKeyCombo.modifierFlags]];
+	shortcut = (aKeyCombo) ? [SRKeyCombo keyComboWithKeyCode:aKeyCombo.keyCode
+											   keyEquivalent:aKeyCombo.keyEquivalent
+											andModifierFlags:[self _filteredCocoaFlags: aKeyCombo.modifierFlags]] : nil;
 	
 	// Notify delegate
 	if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorderCell:keyComboDidChange:)])

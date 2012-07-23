@@ -15,6 +15,9 @@
 
 + (SRKeyCombo *)keyComboWithKeyCode:(NSUInteger)keyCode keyEquivalent:(NSString *)keyEquivalent andModifierFlags:(NSUInteger)modifierFlags
 {
+	if (keyCode == ShortcutRecorderEmptyCode && !keyEquivalent.length)
+		return nil;
+	
 	SRKeyCombo *combo = [self new];
 	
 	combo->_modifierFlags = modifierFlags;
