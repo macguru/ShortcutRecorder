@@ -41,6 +41,10 @@
 		93983B2D0DA43C79007F53F3 /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 939837800DA42965007F53F3 /* ShortcutRecorder.framework */; };
 		93983B390DA43C82007F53F3 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 939837800DA42965007F53F3 /* ShortcutRecorder.framework */; };
 		A1125B79104C8B06005C6F7B /* PTKeyCodeTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = A1125B76104C8AF3005C6F7B /* PTKeyCodeTranslator.m */; };
+		CFC7757E16E6013B00390D7C /* SRRemoveShortcut@2x.png in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50A2A20C16E5F88000FA4ACB /* SRRemoveShortcut@2x.png */; };
+		CFC7757F16E6013B00390D7C /* SRRemoveShortcutPressed@2x.png in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50A2A20D16E5F88000FA4ACB /* SRRemoveShortcutPressed@2x.png */; };
+		CFC7758016E6013B00390D7C /* SRRemoveShortcutRollover@2x.png in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50A2A20E16E5F88000FA4ACB /* SRRemoveShortcutRollover@2x.png */; };
+		CFC7758116E6013B00390D7C /* SRSnapback@2x.png in Copy Resources */ = {isa = PBXBuildFile; fileRef = 50A2A20F16E5F88000FA4ACB /* SRSnapback@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +64,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				CFC7757E16E6013B00390D7C /* SRRemoveShortcut@2x.png in Copy Resources */,
+				CFC7757F16E6013B00390D7C /* SRRemoveShortcutPressed@2x.png in Copy Resources */,
+				CFC7758016E6013B00390D7C /* SRRemoveShortcutRollover@2x.png in Copy Resources */,
+				CFC7758116E6013B00390D7C /* SRSnapback@2x.png in Copy Resources */,
 				5045370815A58CE90088AD49 /* SRRemoveShortcut.png in Copy Resources */,
 				5045370915A58CE90088AD49 /* SRRemoveShortcutPressed.png in Copy Resources */,
 				5045370A15A58CE90088AD49 /* SRRemoveShortcutRollover.png in Copy Resources */,
