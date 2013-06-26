@@ -1,4 +1,4 @@
-Copyright (c) 2006, contributors to ShortcutRecorder. (See the contributors listed in detail later in the file, or see <http://wafflesoftware.net/shortcut/contributors/>.)
+Copyright (c) 2006-2913, contributors to ShortcutRecorder. (See the contributors listed in detail later in the file, or see <http://wafflesoftware.net/shortcut/contributors/>.)
 
 All rights reserved.
 Redistribution and use in source and binary forms, with or without
