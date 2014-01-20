@@ -597,7 +597,7 @@
 				INFOPLIST_FILE = "Framework/ShortcutRecorder-Info.plist";
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				PRODUCT_NAME = ShortcutRecorder;
-				PROVISIONING_PROFILE = "6269F079-F4AB-4199-9CA1-1DC9E238CD00";
+				PROVISIONING_PROFILE = "5ECDD2B7-27B5-47F0-B6CB-857A23025A75";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -621,7 +621,7 @@
 				INFOPLIST_FILE = "Framework/ShortcutRecorder-Info.plist";
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				PRODUCT_NAME = ShortcutRecorder;
-				PROVISIONING_PROFILE = "6269F079-F4AB-4199-9CA1-1DC9E238CD00";
+				PROVISIONING_PROFILE = "5ECDD2B7-27B5-47F0-B6CB-857A23025A75";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
