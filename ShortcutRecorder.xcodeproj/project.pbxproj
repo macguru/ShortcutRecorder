@@ -579,6 +579,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = Framework/ShortcutRecorder.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -597,7 +598,7 @@
 				INFOPLIST_FILE = "Framework/ShortcutRecorder-Info.plist";
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				PRODUCT_NAME = ShortcutRecorder;
-				PROVISIONING_PROFILE = "5ECDD2B7-27B5-47F0-B6CB-857A23025A75";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -609,7 +610,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = Framework/ShortcutRecorder.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -621,7 +623,7 @@
 				INFOPLIST_FILE = "Framework/ShortcutRecorder-Info.plist";
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				PRODUCT_NAME = ShortcutRecorder;
-				PROVISIONING_PROFILE = "5ECDD2B7-27B5-47F0-B6CB-857A23025A75";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
