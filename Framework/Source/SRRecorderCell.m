@@ -179,7 +179,7 @@
 		NSPoint point;
 		point.x = NSMinX(snapbackRect) + round((NSWidth(snapbackRect) - snapbackArrow.size.width) / 2);
 		point.y = NSMinY(snapbackRect) + round((NSHeight(snapbackRect) - snapbackArrow.size.height) / 2) + 1;
-		[snapbackArrow drawAtPoint:point fromRect:NSMakeRect(0, 0, snapbackArrow.size.width, snapbackArrow.size.height) operation:NSCompositeSourceOver fraction:1.0];
+		[snapbackArrow drawAtPoint:point fromRect:NSMakeRect(0, 0, snapbackArrow.size.width, snapbackArrow.size.height) operation:NSCompositingOperationSourceOver fraction:1.0];
 		
 		// Snapback stroke
 		NSBezierPath *snapbackButton = [NSBezierPath bezierPathWithRect:NSInsetRect(snapbackRect, 0.5f, 0.5f)];
@@ -201,7 +201,7 @@
 		NSPoint point;
 		point.x = NSMinX(removeRect);
 		point.y = NSMinY(removeRect) + (NSHeight(removeRect) - removeImage.size.height) / 2;
-		[removeImage drawAtPoint:point fromRect:NSMakeRect(0, 0, removeImage.size.width, removeImage.size.height) operation:NSCompositeSourceOver fraction:1.0];
+		[removeImage drawAtPoint:point fromRect:NSMakeRect(0, 0, removeImage.size.width, removeImage.size.height) operation:NSCompositingOperationSourceOver fraction:1.0];
 		
 		// Inset text rect
 		textFrame.size.width = NSMinX(removeRect) - 2 - NSMinX(textFrame);
@@ -343,7 +343,7 @@
         mouseLocation = [controlView convertPoint: [currentEvent locationInWindow] fromView:nil];
 		
 		switch ([currentEvent type]) {
-			case NSLeftMouseDown: {
+			case NSEventTypeLeftMouseDown: {
 				// Check if mouse is over remove/snapback image
 				if ([controlView mouse:mouseLocation inRect:trackingRect]) {
 					_mouseDown = YES;
@@ -353,7 +353,7 @@
 				break;
 			}
 				
-			case NSLeftMouseDragged: {				
+			case NSEventTypeLeftMouseDragged: {				
 				// Recheck if mouse is still over the image while dragging 
 				_mouseInsideTrackingArea = [controlView mouse:mouseLocation inRect:trackingRect];
 				[controlView setNeedsDisplayInRect: cellFrame];
@@ -361,7 +361,7 @@
 				break;
 			}
 			
-			default: {// NSLeftMouseUp
+			default: {// NSEventTypeLeftMouseUp
 				_mouseDown = NO;
 				_mouseInsideTrackingArea = [controlView mouse:mouseLocation inRect:trackingRect];
 
@@ -392,7 +392,7 @@
 			}
 		}
 		
-    } while ((currentEvent = [[controlView window] nextEventMatchingMask:(NSLeftMouseDraggedMask | NSLeftMouseUpMask) untilDate:[NSDate distantFuture] inMode:NSEventTrackingRunLoopMode dequeue:YES]));
+    } while ((currentEvent = [[controlView window] nextEventMatchingMask:(NSEventMaskLeftMouseDragged | NSEventMaskLeftMouseUp) untilDate:[NSDate distantFuture] inMode:NSEventTrackingRunLoopMode dequeue:YES]));
 	
     return YES;
 }
@@ -472,7 +472,7 @@
 										error:&error]) {
 						// display the error...
 						NSAlert *alert = [NSAlert alertWithMessageText:error.localizedDescription defaultButton:(error.localizedRecoveryOptions)[0] alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@", (error.localizedFailureReason) ?: @""];
-						[alert setAlertStyle:NSCriticalAlertStyle];
+						[alert setAlertStyle:NSAlertStyleCritical];
 						[alert runModal];
 						
 					// Recheck pressed modifier keys
@@ -714,7 +714,7 @@
 
 - (BOOL)_validModifierFlags:(NSUInteger)flags
 {
-	return (allowsBareKeys ? YES :(((flags & NSCommandKeyMask) || (flags & NSAlternateKeyMask) || (flags & NSControlKeyMask) || (flags & NSShiftKeyMask) || (flags & NSFunctionKeyMask)) ? YES : NO));	
+	return (allowsBareKeys ? YES :(((flags & NSEventModifierFlagCommand) || (flags & NSEventModifierFlagOption) || (flags & NSEventModifierFlagControl) || (flags & NSEventModifierFlagShift) || (flags & NSFunctionKeyMask)) ? YES : NO));	
 }
 
 #pragma mark -
@@ -724,10 +724,10 @@
 	NSUInteger carbonFlags = ShortcutRecorderEmptyFlags;
 	NSUInteger filteredFlags = [self _filteredCocoaFlags: cocoaFlags];
 	
-	if (filteredFlags & NSCommandKeyMask) carbonFlags |= cmdKey;
-	if (filteredFlags & NSAlternateKeyMask) carbonFlags |= optionKey;
-	if (filteredFlags & NSControlKeyMask) carbonFlags |= controlKey;
-	if (filteredFlags & NSShiftKeyMask) carbonFlags |= shiftKey;
+	if (filteredFlags & NSEventModifierFlagCommand) carbonFlags |= cmdKey;
+	if (filteredFlags & NSEventModifierFlagOption) carbonFlags |= optionKey;
+	if (filteredFlags & NSEventModifierFlagControl) carbonFlags |= controlKey;
+	if (filteredFlags & NSEventModifierFlagShift) carbonFlags |= shiftKey;
 	
 	// I couldn't find out the equivalent constant in Carbon, but apparently it must use the same one as Cocoa. -AK
 	if (filteredFlags & NSFunctionKeyMask) carbonFlags |= NSFunctionKeyMask;

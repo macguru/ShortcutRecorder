@@ -93,7 +93,7 @@ enum {
 
 // Some default values
 #define ShortcutRecorderEmptyFlags 0
-#define ShortcutRecorderAllFlags (ShortcutRecorderEmptyFlags | (NSCommandKeyMask | NSAlternateKeyMask | NSControlKeyMask | NSShiftKeyMask | NSFunctionKeyMask))
+#define ShortcutRecorderAllFlags (ShortcutRecorderEmptyFlags | (NSEventModifierFlagCommand | NSEventModifierFlagOption | NSEventModifierFlagControl | NSEventModifierFlagShift | NSEventModifierFlagFunction))
 #define ShortcutRecorderEmptyCode -1
 
 

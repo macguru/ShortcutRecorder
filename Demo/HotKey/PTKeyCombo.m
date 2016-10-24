@@ -204,10 +204,10 @@
 
 	static NSUInteger modToChar[4][2] =
 	{
-		{ cmdKey, 		NSCommandKeyMask },
-		{ optionKey,	NSAlternateKeyMask },
-		{ controlKey,	NSControlKeyMask },
-		{ shiftKey,		NSShiftKeyMask }
+		{ cmdKey, 		NSEventModifierFlagCommand },
+		{ optionKey,	NSEventModifierFlagOption },
+		{ controlKey,	NSEventModifierFlagControl },
+		{ shiftKey,		NSEventModifierFlagShift }
 	};
 
     NSUInteger i, ret = 0;

@@ -27,10 +27,10 @@
 {
 	NSUInteger newFlags = 0;
 	
-	if ([allowedModifiersCommandCheckBox state]) newFlags += NSCommandKeyMask;
-	if ([allowedModifiersOptionCheckBox state]) newFlags += NSAlternateKeyMask;
-	if ([allowedModifiersControlCheckBox state]) newFlags += NSControlKeyMask;
-	if ([allowedModifiersShiftCheckBox state]) newFlags += NSShiftKeyMask;
+	if ([allowedModifiersCommandCheckBox state]) newFlags += NSEventModifierFlagCommand;
+	if ([allowedModifiersOptionCheckBox state]) newFlags += NSEventModifierFlagOption;
+	if ([allowedModifiersControlCheckBox state]) newFlags += NSEventModifierFlagControl;
+	if ([allowedModifiersShiftCheckBox state]) newFlags += NSEventModifierFlagShift;
 	
 	[shortcutRecorder setAllowedModifierFlags: newFlags];
 }
@@ -39,10 +39,10 @@
 {
 	NSUInteger newFlags = 0;
 	
-	if ([requiredModifiersCommandCheckBox state]) newFlags += NSCommandKeyMask;
-	if ([requiredModifiersOptionCheckBox state]) newFlags += NSAlternateKeyMask;
-	if ([requiredModifiersControlCheckBox state]) newFlags += NSControlKeyMask;
-	if ([requiredModifiersShiftCheckBox state]) newFlags += NSShiftKeyMask;
+	if ([requiredModifiersCommandCheckBox state]) newFlags += NSEventModifierFlagCommand;
+	if ([requiredModifiersOptionCheckBox state]) newFlags += NSEventModifierFlagOption;
+	if ([requiredModifiersControlCheckBox state]) newFlags += NSEventModifierFlagControl;
+	if ([requiredModifiersShiftCheckBox state]) newFlags += NSEventModifierFlagShift;
 	
 	[shortcutRecorder setRequiredModifierFlags: newFlags];
 }
