@@ -130,6 +130,9 @@
 		50A2A20E16E5F88000FA4ACB /* SRRemoveShortcutRollover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SRRemoveShortcutRollover@2x.png"; sourceTree = "<group>"; };
 		50A2A20F16E5F88000FA4ACB /* SRSnapback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SRSnapback@2x.png"; sourceTree = "<group>"; };
 		50AD79E2188807A500A34E13 /* ShortcutRecorder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = ShortcutRecorder.entitlements; path = Framework/ShortcutRecorder.entitlements; sourceTree = "<group>"; };
+		5B860DE81F01599600EB912F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B860DE91F01599600EB912F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B860DEA1F0159BB00EB912F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		6FA069BC396C1ED9AB4D9407 /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		74C3670C0A246B4900B69171 /* SRKeyCodeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SRKeyCodeTransformer.h; path = Framework/Source/SRKeyCodeTransformer.h; sourceTree = SOURCE_ROOT; };
 		74C3670D0A246B4900B69171 /* SRKeyCodeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SRKeyCodeTransformer.m; path = Framework/Source/SRKeyCodeTransformer.m; sourceTree = SOURCE_ROOT; };
@@ -445,6 +448,7 @@
 				sk,
 				"pt-BR",
 				ja,
+				pt,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* ShortcutRecorder */;
 			projectDirPath = "";
@@ -522,6 +526,7 @@
 				6FA069BC396C1ED9AB4D9407 /* es */,
 				89500C76A3DE8CF37AE9C5EE /* zh-Hans */,
 				FE924019ABE2333BA4CFA750 /* ja */,
+				5B860DEA1F0159BB00EB912F /* pt */,
 			);
 			name = ShortcutRecorder.strings;
 			sourceTree = "<group>";
@@ -536,6 +541,7 @@
 				9371C7A315167E07008B7F36 /* sv */,
 				9371C7A415167E08008B7F36 /* pt-BR */,
 				9371C7A515167E09008B7F36 /* sk */,
+				5B860DE81F01599600EB912F /* pt */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -550,6 +556,7 @@
 				9371C7A915167E0E008B7F36 /* sv */,
 				9371C7AA15167E0F008B7F36 /* pt-BR */,
 				9371C7AB15167E10008B7F36 /* sk */,
+				5B860DE91F01599600EB912F /* pt */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
