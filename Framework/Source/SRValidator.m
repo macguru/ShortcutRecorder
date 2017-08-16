@@ -176,6 +176,10 @@
 			
 			NSString *localKeyString = SRStringForKeyCode(keyCode);
 			
+			// Assume shift to be pressed if menu item key equivalent is an uppercase letter
+			if ([self.class isUppercaseLetter: menuItemKeyEquivalent])
+				menuItemShiftMod = YES;
+			
 			// Compare translated keyCode and modifier flags
 			if (([[menuItemKeyEquivalent uppercaseString] isEqualToString: localKeyString]) 
                  && (menuItemCommandMod == localCommandMod) 
@@ -201,6 +205,18 @@
 		}
 	}
 	return NO;    
+}
+
++ (BOOL)isUppercaseLetter:(NSString *)string
+{
+	static NSCharacterSet *forbiddenCharacters;
+	
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		forbiddenCharacters = NSCharacterSet.uppercaseLetterCharacterSet.invertedSet;
+	});
+	
+	return (string.length == 1 && [[string stringByTrimmingCharactersInSet: forbiddenCharacters] isEqual: string]);
 }
 
 @end
