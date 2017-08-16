@@ -44,6 +44,7 @@
 @protocol SRRecorderCellDelegate <NSObject>
 
 @optional
+- (BOOL)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell areModifierFlagsValid:(NSUInteger)modifierFlags;
 - (BOOL)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
 - (void)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell keyComboDidChange:(SRKeyCombo *)newCombo;
 

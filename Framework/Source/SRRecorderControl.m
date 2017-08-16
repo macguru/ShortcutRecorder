@@ -244,6 +244,13 @@
 // Only the delegate will be handled by the control
 @synthesize delegate;
 
+- (BOOL)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell areModifierFlagsValid:(NSUInteger)modifierFlags
+{
+	if ([delegate respondsToSelector:@selector(shortcutRecorder:areModifierFlagsValid:)])
+		return [delegate shortcutRecorder:self areModifierFlagsValid:modifierFlags];
+	else
+		return YES;
+}
 
 - (BOOL)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason
 {

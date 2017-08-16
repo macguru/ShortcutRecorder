@@ -714,7 +714,10 @@
 
 - (BOOL)_validModifierFlags:(NSUInteger)flags
 {
-	return (allowsBareKeys ? YES :(((flags & NSEventModifierFlagCommand) || (flags & NSEventModifierFlagOption) || (flags & NSEventModifierFlagControl) || (flags & NSEventModifierFlagShift) || (flags & NSFunctionKeyMask)) ? YES : NO));	
+	if ([delegate respondsToSelector: @selector(shortcutRecorderCell:areModifierFlagsValid:)])
+		return [delegate shortcutRecorderCell:self areModifierFlagsValid:flags];
+	else
+		return (allowsBareKeys ? YES :(((flags & NSEventModifierFlagCommand) || (flags & NSEventModifierFlagOption) || (flags & NSEventModifierFlagControl) || (flags & NSEventModifierFlagShift) || (flags & NSFunctionKeyMask)) ? YES : NO));
 }
 
 #pragma mark -
