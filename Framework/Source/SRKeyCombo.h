@@ -26,4 +26,7 @@
 - (BOOL)isEqual:(id)object;
 - (void)configureMenuItem:(NSMenuItem *)item;
 
+// Utility
++ (BOOL)isFunctionKey:(NSInteger)keyCode;
+
 @end

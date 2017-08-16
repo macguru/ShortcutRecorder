@@ -36,7 +36,7 @@
 @protocol SRRecorderDelegate <NSObject>
 @optional
 
-- (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder areModifierFlagsValid:(NSUInteger)modifierFlags;
+- (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder areModifierFlags:(NSUInteger)modifierFlags validForKeyCode:(NSInteger)keyCode;
 - (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
 - (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(SRKeyCombo *)newKeyCombo;
 

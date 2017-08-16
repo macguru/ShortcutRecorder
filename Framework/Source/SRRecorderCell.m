@@ -44,7 +44,6 @@
 
 - (NSUInteger)_filteredCocoaFlags:(NSUInteger)flags;
 - (NSUInteger)_filteredCocoaToCarbonFlags:(NSUInteger)cocoaFlags;
-- (BOOL)_validModifierFlags:(NSUInteger)flags;
 
 - (BOOL)_isEmpty;
 @end
@@ -211,8 +210,8 @@
 	// Display string depending on state
 	NSString *displayString;
 	if (_isRecording) {
-		// Recording, but no modifier keys down
-		if (![self _validModifierFlags: _recordingFlags]) {
+		// Recording, but no valid modifier keys down
+		if (![self _validModifierFlags:_recordingFlags forKeyCode:NSNotFound]) {
 			displayString = SRLocalizedString((_mouseInsideTrackingArea) ? @"Use old shortcut" : @"Type shortcut");
 		} else {
 			// Display currently pressed modifier keys
@@ -429,7 +428,7 @@
 	BOOL snapback = SRIsCancelKey(theEvent.keyCode);
 	
 	// Snapback key shouldn't interfer with required flags!
-	BOOL modifiersValid = [self _validModifierFlags:(snapback) ? theEvent.modifierFlags : flags];
+	BOOL modifiersValid = [self _validModifierFlags:(snapback ? theEvent.modifierFlags : flags) forKeyCode:theEvent.keyCode];
     
 	
     // Special case for the space key when we aren't recording...
@@ -712,10 +711,10 @@
 	return ((flags & allowedModifierFlags) | requiredModifierFlags);
 }
 
-- (BOOL)_validModifierFlags:(NSUInteger)flags
+- (BOOL)_validModifierFlags:(NSUInteger)flags forKeyCode:(NSInteger)keyCode
 {
-	if ([delegate respondsToSelector: @selector(shortcutRecorderCell:areModifierFlagsValid:)])
-		return [delegate shortcutRecorderCell:self areModifierFlagsValid:flags];
+	if ([delegate respondsToSelector: @selector(shortcutRecorderCell:areModifierFlags:validForKeyCode:)])
+		return [delegate shortcutRecorderCell:self areModifierFlags:flags validForKeyCode:keyCode];
 	else
 		return (allowsBareKeys ? YES :(((flags & NSEventModifierFlagCommand) || (flags & NSEventModifierFlagOption) || (flags & NSEventModifierFlagControl) || (flags & NSEventModifierFlagShift) || (flags & NSFunctionKeyMask)) ? YES : NO));
 }
