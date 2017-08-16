@@ -15,6 +15,8 @@
 #import "SRValidator.h"
 #import "SRCommon.h"
 
+#import "SRKeyCombo.h"
+
 @implementation SRValidator
 
 @synthesize delegate;
@@ -174,7 +176,7 @@
 			if (menuItemModifierFlags & NSEventModifierFlagShift)       menuItemShiftMod = YES;
 			if (menuItemModifierFlags & NSEventModifierFlagControl)     menuItemCtrlMod = YES;
 			
-			NSString *localKeyString = SRStringForKeyCode(keyCode);
+			NSString *localKeyString = [SRKeyCombo menuItemKeyEquivalentForKeyCode: keyCode];
 			
 			// Assume shift to be pressed if menu item key equivalent is an uppercase letter
 			if ([self.class isUppercaseLetter: menuItemKeyEquivalent])

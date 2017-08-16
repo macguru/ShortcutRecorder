@@ -74,27 +74,13 @@
 
 - (void)configureMenuItem:(NSMenuItem *)item
 {
-	NSUInteger modifierFlags = self.modifierFlags;
+	item.keyEquivalentModifierMask = self.modifierFlags;
 	
-	// Prefer keyEquivalent string
-	if (self.keyEquivalent) {
-		item.keyEquivalent = self.keyEquivalent;
-	}
-	
-	// Special-case FN keys, because a string like "F10" doesn't work for menu items
-	else if ([self.class isFunctionKey: self.keyCode]) {
-		item.keyEquivalent = [NSString stringWithFormat: @"%C", [self.class keyEquivalentForFunctionKey: self.keyCode]];
-		
-		// Don't show the "FN" modifier in the menu
-		modifierFlags &= ~NSFunctionKeyMask;
-	}
-	
-	// Otherwise, convert key code to string
-	else {
-		item.keyEquivalent = SRStringForKeyCode(self.keyCode).lowercaseString ?: @"";
-	}
-	
-	item.keyEquivalentModifierMask = modifierFlags;
+	// Don't show the "FN" modifier in the menu
+	if ([self.class isFunctionKey: self.keyCode])
+		item.keyEquivalentModifierMask &= ~NSFunctionKeyMask;
+
+	item.keyEquivalent = self.keyEquivalent ?: [self.class menuItemKeyEquivalentForKeyCode: self.keyCode];
 }
 
 
@@ -127,6 +113,17 @@
 		default:
 			return NO;
 	}
+}
+
++ (NSString *)menuItemKeyEquivalentForKeyCode:(NSInteger)keyCode
+{
+	// Use special characters for FN keys
+	if ([self.class isFunctionKey: keyCode])
+		return [NSString stringWithFormat: @"%C", [self.class keyEquivalentForFunctionKey: keyCode]];
+	
+	// Otherwise, use SRStringForKeyCode
+	else
+		return SRStringForKeyCode(keyCode).lowercaseString ?: @"";
 }
 
 + (unichar)keyEquivalentForFunctionKey:(NSInteger)keyCode

@@ -29,4 +29,6 @@
 // Utility
 + (BOOL)isFunctionKey:(NSInteger)keyCode;
 
++ (NSString *)menuItemKeyEquivalentForKeyCode:(NSInteger)keyCode;
+
 @end
