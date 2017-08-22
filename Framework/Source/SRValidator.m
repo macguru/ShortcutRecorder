@@ -183,7 +183,7 @@
 				menuItemShiftMod = YES;
 			
 			// Compare translated keyCode and modifier flags
-			if (([[menuItemKeyEquivalent uppercaseString] isEqualToString: localKeyString]) 
+			if (([[menuItemKeyEquivalent lowercaseString] isEqualToString: localKeyString])
                  && (menuItemCommandMod == localCommandMod) 
                  && (menuItemOptionMod == localOptionMod) 
                  && (menuItemShiftMod == localShiftMod) 
