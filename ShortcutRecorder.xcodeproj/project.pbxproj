@@ -621,7 +621,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Framework/ShortcutRecorder-Info.plist";
-				INSTALL_PATH = "@loader_path/../Frameworks";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.wafflesoftware.ShortcutRecorder;
 				PRODUCT_NAME = ShortcutRecorder;
 				PROVISIONING_PROFILE = "";
@@ -647,7 +647,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Framework/ShortcutRecorder-Info.plist";
-				INSTALL_PATH = "@loader_path/../Frameworks";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.wafflesoftware.ShortcutRecorder;
 				PRODUCT_NAME = ShortcutRecorder;
 				PROVISIONING_PROFILE = "";
