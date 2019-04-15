@@ -125,6 +125,7 @@
 		507562E215A4757F00C73134 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
 		507562E415A4758300C73134 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		507562E615A4758600C73134 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		5094F5EF2264E6C100EFC734 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		50A2A20C16E5F88000FA4ACB /* SRRemoveShortcut@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SRRemoveShortcut@2x.png"; sourceTree = "<group>"; };
 		50A2A20D16E5F88000FA4ACB /* SRRemoveShortcutPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SRRemoveShortcutPressed@2x.png"; sourceTree = "<group>"; };
 		50A2A20E16E5F88000FA4ACB /* SRRemoveShortcutRollover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SRRemoveShortcutRollover@2x.png"; sourceTree = "<group>"; };
@@ -151,7 +152,6 @@
 		89500C76A3DE8CF37AE9C5EE /* zh-Hans */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
 		9371C79815167DE2008B7F36 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9371C79A15167DE2008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		9371C79C15167DE2008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9371C7A015167DFD008B7F36 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9371C7A115167E03008B7F36 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9371C7A215167E06008B7F36 /* pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -431,7 +431,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				TargetAttributes = {
 					9398377F0DA42965007F53F3 = {
 						DevelopmentTeam = X5AZV975AG;
@@ -440,15 +440,10 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ShortcutRecorder" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
 				sv,
-				Dutch,
 				de,
 				en,
 				nl,
@@ -463,6 +458,7 @@
 				it,
 				es,
 				"zh-Hans",
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* ShortcutRecorder */;
 			projectDirPath = "";
@@ -584,7 +580,6 @@
 		9371C79B15167DE2008B7F36 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9371C79C15167DE2008B7F36 /* en */,
 				9371C7AC15167E13008B7F36 /* de */,
 				9371C7AD15167E14008B7F36 /* nl */,
 				9371C7AE15167E15008B7F36 /* pl */,
@@ -593,6 +588,7 @@
 				9371C7B115167E18008B7F36 /* sk */,
 				5B860DEF1F015C1200EB912F /* ko */,
 				5B860DF31F015C1800EB912F /* ru */,
+				5094F5EF2264E6C100EFC734 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
