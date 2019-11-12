@@ -177,6 +177,7 @@
 		A1125B75104C8AF3005C6F7B /* PTKeyCodeTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKeyCodeTranslator.h; sourceTree = "<group>"; };
 		A1125B76104C8AF3005C6F7B /* PTKeyCodeTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKeyCodeTranslator.m; sourceTree = "<group>"; };
 		A74F2E2BC2BFC25FDD9972DA /* fr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		CF1CDE88237ACE010062EA36 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
 		EA5BFB2F4AFE059488F1CC6D /* it */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		FE924019ABE2333BA4CFA750 /* ja */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -459,6 +460,7 @@
 				es,
 				"zh-Hans",
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* ShortcutRecorder */;
 			projectDirPath = "";
@@ -539,6 +541,7 @@
 				5B860DEA1F0159BB00EB912F /* pt */,
 				5B860DEC1F015C1200EB912F /* ko */,
 				5B860DF01F015C1700EB912F /* ru */,
+				CF1CDE88237ACE010062EA36 /* zh-Hant */,
 			);
 			name = ShortcutRecorder.strings;
 			sourceTree = "<group>";
