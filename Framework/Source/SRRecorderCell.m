@@ -83,7 +83,7 @@
 								  andModifierFlags:[[aDecoder decodeObjectForKey: @"keyComboFlags"] unsignedIntegerValue]];
 		
 		allowedModifierFlags = [[aDecoder decodeObjectForKey: @"allowedModifierFlags"] unsignedIntegerValue];
-		allowedModifierFlags |= NSFunctionKeyMask;
+		allowedModifierFlags |= NSEventModifierFlagFunction;
 		
 		requiredModifierFlags = [[aDecoder decodeObjectForKey: @"requiredModifierFlags"] unsignedIntegerValue];
 		
@@ -448,7 +448,7 @@
 				if (allowsBareKeys) {
 					// ...AND modifiers are empty, or empty save for the Function key
 					// (needed, since forward delete is fn+delete on laptops)
-					if (flags == ShortcutRecorderEmptyFlags || flags == (ShortcutRecorderEmptyFlags | NSFunctionKeyMask)) {
+					if (flags == ShortcutRecorderEmptyFlags || flags == (ShortcutRecorderEmptyFlags | NSEventModifierFlagFunction)) {
 						// ...check for behavior in recordsEscapeKey.
 						if (!recordsEscapeKey) {
 							goAhead = NO;
@@ -470,8 +470,12 @@
 								andFlagsTaken:[self _filteredCocoaToCarbonFlags:flags]
 										error:&error]) {
 						// display the error...
-						NSAlert *alert = [NSAlert alertWithMessageText:error.localizedDescription defaultButton:(error.localizedRecoveryOptions)[0] alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@", (error.localizedFailureReason) ?: @""];
-						[alert setAlertStyle:NSAlertStyleCritical];
+						NSAlert *alert = [NSAlert new];
+						alert.messageText = error.localizedDescription;
+						alert.informativeText = error.localizedFailureReason ?: @"";
+						alert.alertStyle = NSAlertStyleCritical;
+						
+						[alert addButtonWithTitle: error.localizedRecoveryOptions[0]];
 						[alert runModal];
 						
 					// Recheck pressed modifier keys
@@ -716,7 +720,7 @@
 	if ([delegate respondsToSelector: @selector(shortcutRecorderCell:areModifierFlags:validForKeyCode:)])
 		return [delegate shortcutRecorderCell:self areModifierFlags:flags validForKeyCode:keyCode];
 	else
-		return (allowsBareKeys ? YES :(((flags & NSEventModifierFlagCommand) || (flags & NSEventModifierFlagOption) || (flags & NSEventModifierFlagControl) || (flags & NSEventModifierFlagShift) || (flags & NSFunctionKeyMask)) ? YES : NO));
+		return (allowsBareKeys ? YES :(((flags & NSEventModifierFlagCommand) || (flags & NSEventModifierFlagOption) || (flags & NSEventModifierFlagControl) || (flags & NSEventModifierFlagShift) || (flags & NSEventModifierFlagFunction)) ? YES : NO));
 }
 
 #pragma mark -
@@ -732,7 +736,7 @@
 	if (filteredFlags & NSEventModifierFlagShift) carbonFlags |= shiftKey;
 	
 	// I couldn't find out the equivalent constant in Carbon, but apparently it must use the same one as Cocoa. -AK
-	if (filteredFlags & NSFunctionKeyMask) carbonFlags |= NSFunctionKeyMask;
+	if (filteredFlags & NSEventModifierFlagFunction) carbonFlags |= NSEventModifierFlagFunction;
 	
 	return carbonFlags;
 }

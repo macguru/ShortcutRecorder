@@ -128,7 +128,7 @@ NSUInteger SRCarbonToCocoaFlags(NSUInteger carbonFlags)
 	if (carbonFlags & optionKey) cocoaFlags |= NSEventModifierFlagOption;
 	if (carbonFlags & controlKey) cocoaFlags |= NSEventModifierFlagControl;
 	if (carbonFlags & shiftKey) cocoaFlags |= NSEventModifierFlagShift;
-	if (carbonFlags & NSFunctionKeyMask) cocoaFlags += NSFunctionKeyMask;
+	if (carbonFlags & NSEventModifierFlagFunction) cocoaFlags += NSEventModifierFlagFunction;
 	
 	return cocoaFlags;
 }
@@ -144,7 +144,7 @@ NSUInteger SRCocoaToCarbonFlags(NSUInteger cocoaFlags)
 	if (cocoaFlags & NSEventModifierFlagOption) carbonFlags |= optionKey;
 	if (cocoaFlags & NSEventModifierFlagControl) carbonFlags |= controlKey;
 	if (cocoaFlags & NSEventModifierFlagShift) carbonFlags |= shiftKey;
-	if (cocoaFlags & NSFunctionKeyMask) carbonFlags |= NSFunctionKeyMask;
+	if (cocoaFlags & NSEventModifierFlagFunction) carbonFlags |= NSEventModifierFlagFunction;
 	
 	return carbonFlags;
 }

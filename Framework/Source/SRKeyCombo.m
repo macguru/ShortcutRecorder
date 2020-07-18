@@ -78,7 +78,7 @@
 	
 	// Don't show the "FN" modifier in the menu
 	if ([self.class isFunctionKey: self.keyCode])
-		item.keyEquivalentModifierMask &= ~NSFunctionKeyMask;
+		item.keyEquivalentModifierMask &= ~NSEventModifierFlagFunction;
 
 	item.keyEquivalent = self.keyEquivalent ?: [self.class menuItemKeyEquivalentForKeyCode: self.keyCode];
 }
