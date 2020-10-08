@@ -475,7 +475,7 @@
 						alert.informativeText = error.localizedFailureReason ?: @"";
 						alert.alertStyle = NSAlertStyleCritical;
 						
-						[alert addButtonWithTitle: error.localizedRecoveryOptions[0]];
+						[alert addButtonWithTitle: error.localizedRecoveryOptions[0] ?: SRLocalizedString(@"OK")];
 						[alert runModal];
 						
 					// Recheck pressed modifier keys
